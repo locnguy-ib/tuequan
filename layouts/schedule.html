@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+<article class="schedule-page">
+
+    <header class="schedule-header">
+
+        <h1 id="scheduleTitle">Lịch sinh hoạt</h1>
+
+        <div class="schedule-navigation">
+
+            <button id="previousMonth" type="button">
+                ← Tháng trước
+            </button>
+
+            <h2 id="scheduleMonth"></h2>
+
+            <button id="nextMonth" type="button">
+                Tháng sau →
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <div id="monthlySchedule" class="monthly-schedule">
+
+        <p>Đang tải lịch...</p>
+
+    </div>
+
+</article>
+
+
+<script>
+    window.recurringEvents =
+        {{ site.Data.recurringEvents | jsonify | safeJS }};
+</script>
+
+<script src="{{ "js/schedule.js" | relURL }}"></script>
+
+<script src="{{ "js/schedule-page.js" | relURL }}"></script>
+
+{{ end }}
