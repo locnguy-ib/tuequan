@@ -10,7 +10,7 @@
         {{ if .Params.poster }}
         <div class="event-poster">
             <img
-                src="/images/events/{{ .Params.poster }}"
+                src="{{ printf "images/events/%s" .Params.poster | relURL }}"
                 alt="{{ .Params.title }}"
             >
         </div>
@@ -68,7 +68,7 @@
         {{ if $englishPoster }}
         <div class="event-poster">
             <img
-                src="/images/events/{{ $englishPoster }}"
+                src="{{ printf "images/events/%s" $englishPoster | relURL }}"
                 alt="{{ .Params.title_en }}"
             >
         </div>
