@@ -16,3 +16,7 @@ Join us for our Sunday meditation program.
 10:30 AM — Dhamma talk
 
 11:30 AM — Lunch offering
+
+## Contact
+
+Please contact Tuệ Quán Thiền Viện for more information.
