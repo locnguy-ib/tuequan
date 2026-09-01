@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+{{ $parts := split .RawContent "<!-- EN -->" }}
+
+<article class="standard-page">
+
+    <div class="language-content vietnamese">
+
+        {{ index $parts 0 | markdownify }}
+
+    </div>
+
+    {{ if gt (len $parts) 1 }}
+
+    <div class="language-content english">
+
+        {{ index $parts 1 | markdownify }}
+
+    </div>
+
+    {{ end }}
+
+</article>
+
+{{ end }}
