@@ -24,9 +24,9 @@ Thông tin về các chương trình sắp tới được đăng tại trang **S
 
 <!-- EN -->
 
-# Tuệ Quán Thiền Viện
+# Tuệ Quán Vipassanā Vihāra
 
-Tuệ Quán Thiền Viện is a place for learning and practicing the Buddha's Dhamma according to the Theravāda Buddhist tradition.
+Tuệ Quán Vipassanā Vihāra is a place for learning and practicing the Buddha's Dhamma according to the Theravāda Buddhist tradition.
 
 ## Vipassanā Meditation
 
