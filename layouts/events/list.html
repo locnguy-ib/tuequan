@@ -1,43 +1,122 @@
 {{ define "main" }}
 
-<h1>Events</h1>
+<h1>Sự kiện</h1>
 
-{{ $events := .Pages.ByDate }}
+{{ $events := where .Site.RegularPages "Section" "events" }}
+{{ $upcoming := where $events "Date" "ge" now }}
+{{ $past := where $events "Date" "lt" now }}
 
-{{ range $events }}
+{{ if $upcoming }}
 
-<article class="event">
+<h2>Sắp diễn ra</h2>
 
-    <h2>
+<div class="event-list">
+
+    {{ range $upcoming.ByDate }}
+
+    <article class="event-card">
+
+        <h3>
+            <a href="{{ .RelPermalink }}">
+                {{ .Params.title }}
+            </a>
+        </h3>
+
+        <div class="event-date">
+            📅 {{ .Date.Format "02/01/2006" }}
+        </div>
+
+        <div class="event-time">
+            🕐 {{ .Params.time }}
+        </div>
+
+        <div class="event-location">
+            📍 {{ .Params.location }}
+        </div>
+
+        <p>
+            {{ .Params.description }}
+        </p>
+
         <a href="{{ .RelPermalink }}">
-            {{ .Title }}
+            Xem chi tiết →
         </a>
-    </h2>
 
-    <p class="event-date">
-        {{ .Date.Format "Monday, January 2, 2006" }}
-    </p>
+    </article>
 
-    {{ with .Params.time }}
-    <p class="event-meta">
-        {{ . }}
-    </p>
     {{ end }}
 
-    {{ with .Params.location }}
-    <p class="event-meta">
-        {{ . }}
-    </p>
-    {{ end }}
-
-    {{ with .Params.category }}
-    <p class="event-meta">
-        {{ . }}
-    </p>
-    {{ end }}
-
-</article>
+</div>
 
 {{ end }}
+
+
+{{ if $past }}
+
+<h2>Sự kiện đã qua</h2>
+
+<div class="event-list">
+
+    {{ range $past.ByDate.Reverse }}
+
+    <article class="event-card">
+
+        <h3>
+            <a href="{{ .RelPermalink }}">
+                {{ .Params.title }}
+            </a>
+        </h3>
+
+        <div class="event-date">
+            📅 {{ .Date.Format "02/01/2006" }}
+        </div>
+
+        <div class="event-location">
+            📍 {{ .Params.location }}
+        </div>
+
+        <a href="{{ .RelPermalink }}">
+            Xem chi tiết →
+        </a>
+
+    </article>
+
+    {{ end }}
+
+</div>
+
+{{ end }}
+
+
+<style>
+
+.event-list {
+    display: grid;
+    gap: 20px;
+    margin: 20px 0 40px;
+}
+
+.event-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.event-card h3 {
+    margin-top: 0;
+}
+
+.event-card a {
+    text-decoration: none;
+}
+
+.event-date,
+.event-time,
+.event-location {
+    margin: 5px 0;
+    color: #555;
+}
+
+</style>
 
 {{ end }}
