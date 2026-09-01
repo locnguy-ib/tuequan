@@ -1,47 +1,113 @@
-{{ define "main" }}
+<!DOCTYPE html>
+<html lang="{{ if eq .Site.Params.defaultLanguage "vi" }}vi{{ else }}en{{ end }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<article>
-
-    <h1>{{ .Title }}</h1>
-
-    <div class="event-meta">
-
-        <p>
-            <strong>Date:</strong>
-            {{ .Date.Format "Monday, January 2, 2006" }}
-        </p>
-
-        {{ with .Params.time }}
-        <p>
-            <strong>Time:</strong>
-            {{ . }}
-        </p>
+    <title>
+        {{ if eq .Site.Params.defaultLanguage "vi" }}
+            {{ .Params.title_vi }}
+        {{ else }}
+            {{ .Params.title }}
         {{ end }}
+        | Tuệ Quán Thiền Viện
+    </title>
 
-        {{ with .Params.location }}
-        <p>
-            <strong>Location:</strong>
-            {{ . }}
-        </p>
-        {{ end }}
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: system-ui, sans-serif;
+            line-height: 1.6;
+        }
 
-        {{ with .Params.category }}
-        <p>
-            <strong>Category:</strong>
-            {{ . }}
-        </p>
-        {{ end }}
+        .language-switch {
+            margin-bottom: 30px;
+        }
 
+        .language-switch button {
+            padding: 8px 14px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .event-meta {
+            color: #555;
+            margin: 20px 0;
+        }
+
+        .event-meta div {
+            margin: 5px 0;
+        }
+
+        .english {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="language-switch">
+        <button onclick="setLanguage('vi')">Tiếng Việt</button>
+        <button onclick="setLanguage('en')">English</button>
     </div>
+</header>
 
-    <hr>
+<main>
 
-    <div class="event-content">
+    <!-- Vietnamese -->
+    <article class="language-content vietnamese">
+
+        <h1>{{ .Params.title_vi }}</h1>
+
+        <div class="event-meta">
+            <div>📅 {{ .Date.Format "02/01/2006" }}</div>
+            <div>🕐 {{ .Params.time }}</div>
+            <div>📍 {{ .Params.location_vi }}</div>
+        </div>
+
+        <p>{{ .Params.description_vi }}</p>
+
+        <hr>
 
         {{ .Content }}
 
-    </div>
+    </article>
 
-</article>
+    <!-- English -->
+    <article class="language-content english">
 
-{{ end }}
+        <h1>{{ .Params.title }}</h1>
+
+        <div class="event-meta">
+            <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+            <div>🕐 {{ .Params.time }}</div>
+            <div>📍 {{ .Params.location }}</div>
+        </div>
+
+        <p>{{ .Params.description }}</p>
+
+    </article>
+
+</main>
+
+<script>
+function setLanguage(language) {
+    document.querySelector('.vietnamese').style.display =
+        language === 'vi' ? 'block' : 'none';
+
+    document.querySelector('.english').style.display =
+        language === 'en' ? 'block' : 'none';
+
+    localStorage.setItem('language', language);
+}
+
+const savedLanguage = localStorage.getItem('language') || 'vi';
+setLanguage(savedLanguage);
+</script>
+
+</body>
+</html>
