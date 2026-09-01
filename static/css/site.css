@@ -352,6 +352,38 @@ body {
     margin-top: 15px;
 }
 
+.schedule-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+
+.schedule-table th {
+    font-weight: 600;
+}
+
+.schedule-table td a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.schedule-time {
+    margin-top: 5px;
+    white-space: nowrap;
+}
+
 /* -------------------------
    Mobile
    ------------------------- */
