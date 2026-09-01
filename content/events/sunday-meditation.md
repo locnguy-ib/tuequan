@@ -10,6 +10,13 @@ location_en: "Tuệ Quán Thiền Viện"
 
 description: "Kính mời quý vị tham dự chương trình thiền Chủ Nhật."
 description_en: "Join us for our Sunday meditation program."
+
+zoom: "https://zoom.us/j/123456789"
+zoom_info: "Meeting ID: 123 456 789"
+
+poster: "sunday-meditation-vi.png"
+poster_en: "sunday-meditation-vi.png"
+
 ---
 
 ## Chương trình
