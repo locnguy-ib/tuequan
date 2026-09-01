@@ -45,44 +45,78 @@
 
         <nav class="site-nav">
 
-            <a href="{{ "" | relURL }}">
-                Trang chủ
-            </a>
-
-            <a href="{{ "events/" | relURL }}">
-                Sự kiện
-            </a>
-
-            <a href="{{ "blog/" | relURL }}">
-                Blog
-            </a>
-
-            <a href="{{ "about/" | relURL }}">
-                Giới thiệu
-            </a>
-
-            <a href="{{ "contact/" | relURL }}">
-                Liên hệ
-            </a>
-
+            <div class="language-content vietnamese">
+        
+                <a href="{{ "" | relURL }}">
+                    Trang chủ
+                </a>
+        
+                <a href="{{ "events/" | relURL }}">
+                    Sự kiện
+                </a>
+        
+                <a href="{{ "blog/" | relURL }}">
+                    Blog
+                </a>
+        
+                <a href="{{ "schedule/" | relURL }}">
+                    Lịch sinh hoạt
+                </a>
+        
+                <a href="{{ "about/" | relURL }}">
+                    Giới thiệu
+                </a>
+        
+                <a href="{{ "contact/" | relURL }}">
+                    Liên hệ
+                </a>
+        
+            </div>
+        
+        
+            <div class="language-content english">
+        
+                <a href="{{ "" | relURL }}">
+                    Home
+                </a>
+        
+                <a href="{{ "events/" | relURL }}">
+                    Events
+                </a>
+        
+                <a href="{{ "blog/" | relURL }}">
+                    Blog
+                </a>
+        
+                <a href="{{ "schedule/" | relURL }}">
+                    Schedule
+                </a>
+        
+                <a href="{{ "about/" | relURL }}">
+                    About
+                </a>
+        
+                <a href="{{ "contact/" | relURL }}">
+                    Contact
+                </a>
+        
+            </div>
+        
+        
             <span class="language-switch">
-
-                <button
-                    onclick="setLanguage('vi')"
-                >
+        
+                <button onclick="setLanguage('vi')">
                     Tiếng Việt
                 </button>
-
+        
                 |
-
-                <button
-                    onclick="setLanguage('en')"
-                >
+        
+                <button onclick="setLanguage('en')">
                     English
                 </button>
-
+        
             </span>
-
+        
         </nav>
 
     </div>
