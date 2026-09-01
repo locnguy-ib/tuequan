@@ -1,46 +1,61 @@
 {{ define "main" }}
 
+{{ $parts := split .RawContent "<!-- EN -->" }}
+
 <article class="event-page">
 
     <!-- Vietnamese -->
     <div class="language-content vietnamese">
 
-        <h1>{{ .Params.title_vi }}</h1>
-
-        <div class="event-meta">
-            <div>📅 {{ .Date.Format "02/01/2006" }}</div>
-            <div>🕐 {{ .Params.time }}</div>
-            <div>📍 {{ .Params.location_vi }}</div>
-        </div>
-
-        <p>{{ .Params.description_vi }}</p>
-
-        <hr>
-
-        <div class="event-body">
-            {{ .Content }}
-        </div>
-
-    </div>
-
-    <!-- English -->
-    <div class="language-content english">
-
         <h1>{{ .Params.title }}</h1>
 
         <div class="event-meta">
-            <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+            <div>📅 {{ .Date.Format "02/01/2006" }}</div>
             <div>🕐 {{ .Params.time }}</div>
             <div>📍 {{ .Params.location }}</div>
         </div>
 
         <p>{{ .Params.description }}</p>
 
+        <hr>
+
+        <div class="event-body">
+            {{ index $parts 0 | markdownify }}
+        </div>
+
     </div>
+
+
+    <!-- English -->
+    {{ if gt (len $parts) 1 }}
+
+    <div class="language-content english">
+
+        <h1>{{ .Params.title_en }}</h1>
+
+        <div class="event-meta">
+            <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+            <div>🕐 {{ .Params.time }}</div>
+            <div>📍 {{ .Params.location_en }}</div>
+        </div>
+
+        <p>{{ .Params.description_en }}</p>
+
+        <hr>
+
+        <div class="event-body">
+            {{ index $parts 1 | markdownify }}
+        </div>
+
+    </div>
+
+    {{ end }}
 
 </article>
 
+
 <style>
+
 .event-page {
     max-width: 800px;
     margin: 0 auto;
@@ -58,24 +73,38 @@
 .language-content.english {
     display: none;
 }
+
 </style>
 
+
 <script>
+
 function updateLanguage() {
-    const language = localStorage.getItem('language') || 'vi';
 
-    document.querySelectorAll('.vietnamese').forEach(function (element) {
-        element.style.display =
-            language === 'vi' ? 'block' : 'none';
-    });
+    const language =
+        localStorage.getItem('language') || 'vi';
 
-    document.querySelectorAll('.english').forEach(function (element) {
-        element.style.display =
-            language === 'en' ? 'block' : 'none';
-    });
+    document
+        .querySelectorAll('.vietnamese')
+        .forEach(function(element) {
+
+            element.style.display =
+                language === 'vi' ? 'block' : 'none';
+
+        });
+
+    document
+        .querySelectorAll('.english')
+        .forEach(function(element) {
+
+            element.style.display =
+                language === 'en' ? 'block' : 'none';
+
+        });
 }
 
 updateLanguage();
+
 </script>
 
 {{ end }}
