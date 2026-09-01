@@ -6,11 +6,14 @@ body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     line-height: 1.6;
+    color: #333;
+    background: #fff;
 }
 
 .site-header {
     border-bottom: 1px solid #ddd;
     padding: 15px 20px;
+    background: #fff;
 }
 
 .header-inner {
@@ -47,15 +50,33 @@ body {
     background: none;
     cursor: pointer;
     font-size: 0.95rem;
+    padding: 0;
 }
 
 .site-main {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 
-/* Events */
+/* -------------------------
+   Homepage
+   ------------------------- */
+
+.home-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* -------------------------
+   Events
+   ------------------------- */
+
+.events-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
 
 .event-page {
     max-width: 800px;
@@ -70,21 +91,38 @@ body {
 
 .event-card {
     border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 24px;
+    border-radius: 10px;
+    background: #fff;
 }
 
 .event-card h3 {
     margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
 }
 
-.event-card a {
+.event-card h3 a {
     text-decoration: none;
+    color: inherit;
+}
+
+.event-card h3 a:hover {
+    text-decoration: underline;
 }
 
 .event-card div {
     margin: 5px 0;
     color: #555;
+}
+
+.event-card p {
+    margin: 15px 0;
+}
+
+.event-card > a:last-child {
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .event-meta {
@@ -93,21 +131,37 @@ body {
 }
 
 .event-meta div {
-    margin: 5px 0;
+    margin: 6px 0;
 }
 
-.home-page {
-    max-width: 900px;
-    margin: 0 auto;
+.event-body {
+    margin-top: 25px;
 }
 
-/* Language */
+.event-body h2,
+.event-body h3 {
+    margin-top: 30px;
+}
+
+
+/* -------------------------
+   Language
+   ------------------------- */
 
 .language-content.english {
     display: none;
 }
 
+
+/* -------------------------
+   Mobile
+   ------------------------- */
+
 @media (max-width: 600px) {
+
+    .site-main {
+        padding: 25px 15px;
+    }
 
     .site-nav {
         gap: 12px;
@@ -115,6 +169,10 @@ body {
 
     .language-switch {
         margin-left: 0;
+    }
+
+    .event-card {
+        padding: 18px;
     }
 
 }
