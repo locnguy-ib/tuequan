@@ -1,91 +1,155 @@
 {{ define "main" }}
 
-<h1>Sự kiện</h1>
-
 {{ $events := where .Site.RegularPages "Section" "events" }}
 {{ $upcoming := where $events "Date" "ge" now }}
 {{ $past := where $events "Date" "lt" now }}
 
-{{ if $upcoming }}
+<article class="events-page">
 
-<h2>Sắp diễn ra</h2>
+    <!-- Vietnamese -->
+    <div class="language-content vietnamese">
 
-<div class="event-list">
+        <h1>Sự kiện</h1>
 
-    {{ range $upcoming.ByDate }}
+        {{ if $upcoming }}
+        <h2>Sắp diễn ra</h2>
 
-    <article class="event-card">
+        <div class="event-list">
 
-        <h3>
-            <a href="{{ .RelPermalink }}">
-                {{ .Params.title }}
-            </a>
-        </h3>
+            {{ range $upcoming.ByDate }}
 
-        <div class="event-date">
-            📅 {{ .Date.Format "02/01/2006" }}
+            <article class="event-card">
+
+                <h3>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.title }}
+                    </a>
+                </h3>
+
+                <div>📅 {{ .Date.Format "02/01/2006" }}</div>
+                <div>🕐 {{ .Params.time }}</div>
+                <div>📍 {{ .Params.location }}</div>
+
+                <p>{{ .Params.description }}</p>
+
+                <a href="{{ .RelPermalink }}">
+                    Xem chi tiết →
+                </a>
+
+            </article>
+
+            {{ end }}
+
+        </div>
+        {{ end }}
+
+
+        {{ if $past }}
+
+        <h2>Sự kiện đã qua</h2>
+
+        <div class="event-list">
+
+            {{ range $past.ByDate.Reverse }}
+
+            <article class="event-card">
+
+                <h3>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.title }}
+                    </a>
+                </h3>
+
+                <div>📅 {{ .Date.Format "02/01/2006" }}</div>
+                <div>📍 {{ .Params.location }}</div>
+
+                <a href="{{ .RelPermalink }}">
+                    Xem chi tiết →
+                </a>
+
+            </article>
+
+            {{ end }}
+
         </div>
 
-        <div class="event-time">
-            🕐 {{ .Params.time }}
+        {{ end }}
+
+    </div>
+
+
+    <!-- English -->
+    <div class="language-content english">
+
+        <h1>Events</h1>
+
+        {{ if $upcoming }}
+        <h2>Upcoming Events</h2>
+
+        <div class="event-list">
+
+            {{ range $upcoming.ByDate }}
+
+            <article class="event-card">
+
+                <h3>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.title_en }}
+                    </a>
+                </h3>
+
+                <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+                <div>🕐 {{ .Params.time }}</div>
+                <div>📍 {{ .Params.location_en }}</div>
+
+                <p>{{ .Params.description_en }}</p>
+
+                <a href="{{ .RelPermalink }}">
+                    View details →
+                </a>
+
+            </article>
+
+            {{ end }}
+
+        </div>
+        {{ end }}
+
+
+        {{ if $past }}
+
+        <h2>Past Events</h2>
+
+        <div class="event-list">
+
+            {{ range $past.ByDate.Reverse }}
+
+            <article class="event-card">
+
+                <h3>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.title_en }}
+                    </a>
+                </h3>
+
+                <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+                <div>📍 {{ .Params.location_en }}</div>
+
+                <a href="{{ .RelPermalink }}">
+                    View details →
+                </a>
+
+            </article>
+
+            {{ end }}
+
         </div>
 
-        <div class="event-location">
-            📍 {{ .Params.location }}
-        </div>
+        {{ end }}
 
-        <p>
-            {{ .Params.description }}
-        </p>
+    </div>
 
-        <a href="{{ .RelPermalink }}">
-            Xem chi tiết →
-        </a>
-
-    </article>
-
-    {{ end }}
-
-</div>
-
-{{ end }}
-
-
-{{ if $past }}
-
-<h2>Sự kiện đã qua</h2>
-
-<div class="event-list">
-
-    {{ range $past.ByDate.Reverse }}
-
-    <article class="event-card">
-
-        <h3>
-            <a href="{{ .RelPermalink }}">
-                {{ .Params.title }}
-            </a>
-        </h3>
-
-        <div class="event-date">
-            📅 {{ .Date.Format "02/01/2006" }}
-        </div>
-
-        <div class="event-location">
-            📍 {{ .Params.location }}
-        </div>
-
-        <a href="{{ .RelPermalink }}">
-            Xem chi tiết →
-        </a>
-
-    </article>
-
-    {{ end }}
-
-</div>
-
-{{ end }}
+</article>
 
 
 <style>
@@ -110,13 +174,42 @@
     text-decoration: none;
 }
 
-.event-date,
-.event-time,
-.event-location {
+.event-card div {
     margin: 5px 0;
     color: #555;
 }
 
 </style>
+
+
+<script>
+
+function updateLanguage() {
+
+    const language =
+        localStorage.getItem('language') || 'vi';
+
+    document
+        .querySelectorAll('.vietnamese')
+        .forEach(function(element) {
+
+            element.style.display =
+                language === 'vi' ? 'block' : 'none';
+
+        });
+
+    document
+        .querySelectorAll('.english')
+        .forEach(function(element) {
+
+            element.style.display =
+                language === 'en' ? 'block' : 'none';
+
+        });
+}
+
+updateLanguage();
+
+</script>
 
 {{ end }}
