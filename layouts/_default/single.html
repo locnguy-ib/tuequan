@@ -24,6 +24,25 @@
             <div>📍 {{ .Params.location }}</div>
         </div>
 
+        {{ if .Params.zoom }}
+        <div class="event-zoom">
+            <a
+                class="zoom-button"
+                href="{{ .Params.zoom }}"
+                target="_blank"
+                rel="noopener"
+            >
+                Tham dự qua Zoom
+            </a>
+        
+            {{ if .Params.zoom_info }}
+            <div class="zoom-info">
+                {{ .Params.zoom_info }}
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+
         <p>{{ .Params.description }}</p>
 
         <hr>
@@ -62,6 +81,25 @@
             <div>🕐 {{ .Params.time }}</div>
             <div>📍 {{ .Params.location_en }}</div>
         </div>
+
+        {{ if .Params.zoom }}
+        <div class="event-zoom">
+            <a
+                class="zoom-button"
+                href="{{ .Params.zoom }}"
+                target="_blank"
+                rel="noopener"
+            >
+                Join via Zoom
+            </a>
+        
+            {{ if .Params.zoom_info }}
+            <div class="zoom-info">
+                {{ .Params.zoom_info }}
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
 
         <p>{{ .Params.description_en }}</p>
 
