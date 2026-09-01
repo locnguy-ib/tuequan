@@ -3,6 +3,7 @@ title: "Khóa Thiền 3 Ngày Cuối Tuần"
 title_en: "3 Day Weekend Meditation Retreat"
 
 date: 2026-09-18
+date_to: 2026-09-20
 time: "7:45 AM – 18:00 PM"
 
 facilitator: "Từ Khưu Bửu Đức"
