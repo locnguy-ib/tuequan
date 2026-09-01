@@ -41,7 +41,7 @@
                     <a href="{{ .RelPermalink }}">
                         <img
                             class="event-card-poster"
-                            src="/images/events/{{ .Params.poster }}"
+                            src="{{ printf "images/events/%s" .Params.poster | relURL }}"
                             alt="{{ .Params.title }}"
                         >
                     </a>
@@ -191,7 +191,7 @@
                     <a href="{{ .RelPermalink }}">
                         <img
                             class="event-card-poster"
-                            src="/images/events/{{ $englishPoster }}"
+                            src="{{ printf "images/events/%s" $englishPoster | relURL }}"
                             alt="{{ .Params.title_en }}"
                         >
                     </a>
