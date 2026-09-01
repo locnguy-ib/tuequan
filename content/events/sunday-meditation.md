@@ -1,15 +1,18 @@
 ---
-title: "Thiền Chủ Nhật"
-title_en: "Sunday Meditation"
+title: "Khóa Thiền 3 Ngày Cuối Tuần"
+title_en: "3 Day Weekend Meditation Retreat"
 
-date: 2026-09-06
-time: "9:00 AM – 12:00 PM"
+date: 2026-09-18
+time: "7:45 AM – 18:00 PM"
+
+facilitator: "..."
+facilitator_en: "..."
 
 location: "Tuệ Quán Thiền Viện"
 location_en: "Tuệ Quán Thiền Viện"
 
-description: "Kính mời quý vị tham dự chương trình thiền Chủ Nhật."
-description_en: "Join us for our Sunday meditation program."
+description: "Kính mời quý vị tham dự khóa thiền 3 ngày cuối tuần - 18, 19 & 20 tháng 9, 2026"
+description_en: "Join us for our 3 Day Weekend Meditation program - Sep 18, 19 & 20, 2026"
 
 zoom: "https://zoom.us/j/123456789"
 zoom_info: "Meeting ID: 123 456 789"
@@ -21,22 +24,10 @@ poster_en: "sunday-meditation-vi.png"
 
 ## Chương trình
 
-9:00 AM — Tụng kinh buổi sáng
-
-9:30 AM — Thiền Vipassanā
-
-10:30 AM — Pháp thoại
-
-11:30 AM — Cúng dường trai tăng
+... chưa có thông tin
 
 <!-- EN -->
 
 ## Program
 
-9:00 AM — Morning chanting
-
-9:30 AM — Vipassanā meditation
-
-10:30 AM — Dhamma talk
-
-11:30 AM — Lunch offering
+... to be announced
