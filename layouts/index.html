@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+<h1>Welcome to {{ .Site.Title }}</h1>
+
+<p>
+    Welcome to Tuệ Quán Thiền Viện.
+</p>
+
+<h2>Upcoming Events</h2>
+
+{{ $today := now }}
+
+{{ $events := where site.RegularPages "Section" "events" }}
+
+{{ range first 5 (where $events "Date" "ge" $today) }}
+
+<article class="event">
+
+    <h3>
+        <a href="{{ .RelPermalink }}">
+            {{ .Title }}
+        </a>
+    </h3>
+
+    <p class="event-date">
+        {{ .Date.Format "Monday, January 2, 2006" }}
+    </p>
+
+    {{ with .Params.time }}
+    <p class="event-meta">{{ . }}</p>
+    {{ end }}
+
+    {{ with .Params.location }}
+    <p class="event-meta">{{ . }}</p>
+    {{ end }}
+
+</article>
+
+{{ end }}
+
+<p>
+    <a href="{{ "/events/" | relURL }}">
+        View all events →
+    </a>
+</p>
+
+{{ end }}

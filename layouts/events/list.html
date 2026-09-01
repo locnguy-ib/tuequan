@@ -1,0 +1,43 @@
+{{ define "main" }}
+
+<h1>Events</h1>
+
+{{ $events := .Pages.ByDate }}
+
+{{ range $events }}
+
+<article class="event">
+
+    <h2>
+        <a href="{{ .RelPermalink }}">
+            {{ .Title }}
+        </a>
+    </h2>
+
+    <p class="event-date">
+        {{ .Date.Format "Monday, January 2, 2006" }}
+    </p>
+
+    {{ with .Params.time }}
+    <p class="event-meta">
+        {{ . }}
+    </p>
+    {{ end }}
+
+    {{ with .Params.location }}
+    <p class="event-meta">
+        {{ . }}
+    </p>
+    {{ end }}
+
+    {{ with .Params.category }}
+    <p class="event-meta">
+        {{ . }}
+    </p>
+    {{ end }}
+
+</article>
+
+{{ end }}
+
+{{ end }}

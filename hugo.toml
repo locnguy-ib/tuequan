@@ -1,0 +1,6 @@
+baseURL = '/'
+locale = 'en-us'
+title = 'Tuệ Quán Thiền Viện'
+
+[params]
+  description = "Tuệ Quán Thiền Viện — Vipassanā Meditation Center"

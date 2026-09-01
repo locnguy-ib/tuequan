@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+<article>
+
+    <h1>{{ .Title }}</h1>
+
+    <div class="event-meta">
+
+        <p>
+            <strong>Date:</strong>
+            {{ .Date.Format "Monday, January 2, 2006" }}
+        </p>
+
+        {{ with .Params.time }}
+        <p>
+            <strong>Time:</strong>
+            {{ . }}
+        </p>
+        {{ end }}
+
+        {{ with .Params.location }}
+        <p>
+            <strong>Location:</strong>
+            {{ . }}
+        </p>
+        {{ end }}
+
+        {{ with .Params.category }}
+        <p>
+            <strong>Category:</strong>
+            {{ . }}
+        </p>
+        {{ end }}
+
+    </div>
+
+    <hr>
+
+    <div class="event-content">
+
+        {{ .Content }}
+
+    </div>
+
+</article>
+
+{{ end }}
