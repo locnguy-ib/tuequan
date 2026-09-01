@@ -513,19 +513,25 @@
         monthTitle.textContent =
             getMonthTitle(language);
 
-
-        previousButton.textContent =
-            `← ${Schedule.getLabel(
-                "previous",
-                language
-            )}`;
-
-
-        nextButton.textContent =
-            `${Schedule.getLabel(
-                "next",
-                language
-            )} →`;
+        const previousButton =
+            document.getElementById("previousMonth");
+        
+        const nextButton =
+            document.getElementById("nextMonth");
+        
+        if (previousButton) {
+            previousButton.textContent =
+                language === "en"
+                    ? "← Previous"
+                    : "← Tháng trước";
+        }
+        
+        if (nextButton) {
+            nextButton.textContent =
+                language === "en"
+                    ? "Next →"
+                    : "Tháng sau →";
+        }
 
 
         /*
