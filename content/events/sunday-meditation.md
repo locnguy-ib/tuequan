@@ -5,8 +5,8 @@ title_en: "3 Day Weekend Meditation Retreat"
 date: 2026-09-18
 time: "7:45 AM – 18:00 PM"
 
-facilitator: "..."
-facilitator_en: "..."
+facilitator: "Từ Khưu Bửu Đức"
+facilitator_en: "Bhikku Ratanaguṇa"
 
 location: "Tuệ Quán Thiền Viện"
 location_en: "Tuệ Quán Thiền Viện"
