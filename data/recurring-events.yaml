@@ -1,0 +1,27 @@
+- title_vi: "Thiền"
+  title_en: "Meditation"
+  days:
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+  time: "7:30 PM – 8:30 PM"
+  location_vi: "Zoom"
+  location_en: "Zoom"
+  zoom: ""
+  zoom_info_vi: ""
+  zoom_info_en: ""
+
+- title_vi: "Tụng Kinh"
+  title_en: "Chanting"
+  days:
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+  time: "8:30 PM – 9:00 PM"
+  location_vi: "Zoom"
+  location_en: "Zoom"
+  zoom: ""
+  zoom_info_vi: ""
+  zoom_info_en: ""
