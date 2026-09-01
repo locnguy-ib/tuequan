@@ -15,8 +15,8 @@ location_en: "Tuệ Quán Thiền Viện"
 description: "Kính mời quý vị tham dự khóa thiền 3 ngày cuối tuần - 18, 19 & 20 tháng 9, 2026"
 description_en: "Join us for our 3 Day Weekend Meditation program - Sep 18, 19 & 20, 2026"
 
-zoom: "https://zoom.us/j/123456789"
-zoom_info: "Meeting ID: 123 456 789"
+zoom: ""
+zoom_info: ""
 
 poster: "3daySuBuuDuc2026.jpg"
 poster_en: "3daySuBuuDuc2026.jpg"
