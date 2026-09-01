@@ -324,6 +324,34 @@ body {
     margin-top: 8px;
 }
 
+.special-events {
+    display: grid;
+    gap: 20px;
+}
+
+.special-event {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.special-event-date {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.special-event h3 {
+    margin-top: 0;
+}
+
+.special-event-description {
+    margin-top: 12px;
+}
+
+.special-event-link {
+    display: inline-block;
+    margin-top: 15px;
+}
+
 /* -------------------------
    Mobile
    ------------------------- */
