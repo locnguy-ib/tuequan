@@ -31,10 +31,9 @@
 
 </article>
 
-
 <script>
     window.recurringEvents =
-        {{ site.Data.recurringEvents | jsonify | safeJS }};
+        {{ index site.Data "recurring-events" | jsonify | safeJS }};
 </script>
 
 <script src="{{ "js/schedule.js" | relURL }}"></script>
