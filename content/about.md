@@ -1,6 +1,7 @@
 ---
 title: "Giới thiệu"
 title_en: "About"
+layout: "about"
 ---
 
 <!-- VI -->
