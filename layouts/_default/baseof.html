@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
 
     <title>
         {{ if .IsHome }}
@@ -12,122 +18,82 @@
         {{ end }}
     </title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <meta
+        name="description"
+        content="{{ .Site.Params.description }}"
+    >
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            line-height: 1.6;
-        }
+    <link
+        rel="stylesheet"
+        href="/css/site.css"
+    >
 
-        .site-header {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 20px;
-        }
-
-        .header-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .site-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .site-nav {
-            margin-top: 10px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .site-nav a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .language-switch {
-            margin-left: auto;
-        }
-
-        .language-switch button {
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .site-main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-
-        @media (max-width: 600px) {
-            .site-nav {
-                gap: 12px;
-            }
-
-            .language-switch {
-                margin-left: 0;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
 <header class="site-header">
+
     <div class="header-inner">
 
-        <a class="site-title" href="/">
+        <a
+            class="site-title"
+            href="/"
+        >
             Tuệ Quán Thiền Viện
         </a>
 
         <nav class="site-nav">
 
-            <a href="/">Trang chủ</a>
+            <a href="/">
+                Trang chủ
+            </a>
 
-            <a href="/events/">Sự kiện</a>
+            <a href="/events/">
+                Sự kiện
+            </a>
 
-            <a href="/about/">Giới thiệu</a>
+            <a href="/about/">
+                Giới thiệu
+            </a>
 
-            <a href="/contact/">Liên hệ</a>
+            <a href="/contact/">
+                Liên hệ
+            </a>
 
             <span class="language-switch">
-                <button onclick="setLanguage('vi')">
+
+                <button
+                    onclick="setLanguage('vi')"
+                >
                     Tiếng Việt
                 </button>
 
                 |
 
-                <button onclick="setLanguage('en')">
+                <button
+                    onclick="setLanguage('en')"
+                >
                     English
                 </button>
+
             </span>
 
         </nav>
 
     </div>
+
 </header>
 
 <main class="site-main">
-    {{ block "main" . }}{{ end }}
+
+    {{ block "main" . }}
+    {{ end }}
+
 </main>
 
-<script>
-function setLanguage(language) {
-    localStorage.setItem('language', language);
-    location.reload();
-}
-</script>
+<script src="/js/site.js"></script>
 
 </body>
+
 </html>
