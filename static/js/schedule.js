@@ -4,82 +4,50 @@
     const recurringEvents = window.recurringEvents || [];
 
     const dayNames = {
-        en: [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-        ],
-        vi: [
-            "Chủ Nhật",
-            "Thứ Hai",
-            "Thứ Ba",
-            "Thứ Tư",
-            "Thứ Năm",
-            "Thứ Sáu",
-            "Thứ Bảy"
-        ]
-    };
+        en: {
+            Sunday: "Sunday",
+            Monday: "Monday",
+            Tuesday: "Tuesday",
+            Wednesday: "Wednesday",
+            Thursday: "Thursday",
+            Friday: "Friday",
+            Saturday: "Saturday"
+        },
 
-    const monthNames = {
-        en: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ],
-        vi: [
-            "Tháng 1",
-            "Tháng 2",
-            "Tháng 3",
-            "Tháng 4",
-            "Tháng 5",
-            "Tháng 6",
-            "Tháng 7",
-            "Tháng 8",
-            "Tháng 9",
-            "Tháng 10",
-            "Tháng 11",
-            "Tháng 12"
-        ]
+        vi: {
+            Sunday: "Chủ Nhật",
+            Monday: "Thứ Hai",
+            Tuesday: "Thứ Ba",
+            Wednesday: "Thứ Tư",
+            Thursday: "Thứ Năm",
+            Friday: "Thứ Sáu",
+            Saturday: "Thứ Bảy"
+        }
     };
 
     const labels = {
         en: {
+            recurring: "Recurring Events",
+            special: "Special Events",
             previous: "Previous",
             next: "Next",
             zoom: "Zoom",
-            noEvents: "No scheduled activities this month."
+            noRecurring: "No recurring events.",
+            noSpecial: "No special events."
         },
+
         vi: {
+            recurring: "Sinh hoạt định kỳ",
+            special: "Sự kiện đặc biệt",
             previous: "Tháng trước",
             next: "Tháng sau",
             zoom: "Zoom",
-            noEvents: "Không có sinh hoạt định kỳ trong tháng này."
+            noRecurring: "Không có sinh hoạt định kỳ.",
+            noSpecial: "Không có sự kiện đặc biệt."
         }
     };
 
 
-    /*
-     * Get the current site language.
-     *
-     * This assumes the existing site language selector
-     * stores "vi" or "en" on the document.
-     *
-     * We will connect this to the existing language
-     * selector when we build the UI.
-     */
     function getLanguage() {
 
         if (
@@ -93,38 +61,16 @@
     }
 
 
-    function getDaysInMonth(year, month) {
+    function getDayNames(days, language) {
 
-        return new Date(year, month + 1, 0).getDate();
-
-    }
-
-
-    function getEventsForDate(date) {
-
-        const dayName =
-            [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-            ][date.getDay()];
-
-
-        return recurringEvents.filter(event => {
-
-            return Array.isArray(event.days) &&
-                   event.days.includes(dayName);
-
-        });
+        return days
+            .map(day => dayNames[language][day] || day)
+            .join(", ");
 
     }
 
 
-    function getEventTitle(event, language) {
+    function getTitle(event, language) {
 
         return language === "en"
             ? event.title_en
@@ -133,7 +79,7 @@
     }
 
 
-    function getEventLocation(event, language) {
+    function getLocation(event, language) {
 
         return language === "en"
             ? event.location_en
@@ -151,94 +97,31 @@
     }
 
 
-    /*
-     * Build one month's recurring events.
-     *
-     * This function does NOT render anything.
-     * It only returns structured data.
-     *
-     * The homepage and full schedule page
-     * will both use this same function.
-     */
-    function buildMonth(year, month) {
-
-        const daysInMonth =
-            getDaysInMonth(year, month);
-
-        const days = [];
-
-
-        for (let day = 1; day <= daysInMonth; day++) {
-
-            const date =
-                new Date(year, month, day);
-
-            const events =
-                getEventsForDate(date);
-
-
-            if (!events.length) {
-                continue;
-            }
-
-
-            days.push({
-                date,
-                day: day,
-                weekday: date.getDay(),
-                events
-            });
-
-        }
-
-
-        return {
-            year,
-            month,
-            days
-        };
-
-    }
-
-
-    /*
-     * Public API
-     *
-     * The UI files will use:
-     *
-     * Schedule.getMonth(...)
-     * Schedule.getLanguage(...)
-     * Schedule.getDayName(...)
-     */
     window.Schedule = {
 
-        getMonth: buildMonth,
+        getLanguage,
 
-        getLanguage: getLanguage,
+        getDayNames,
 
-        getDayName: function (weekday, language) {
+        getTitle,
 
-            return dayNames[language || getLanguage()][weekday];
+        getLocation,
 
-        },
-
-        getMonthName: function (month, language) {
-
-            return monthNames[language || getLanguage()][month];
-
-        },
+        getZoomInfo,
 
         getLabel: function (name, language) {
 
-            return labels[language || getLanguage()][name];
+            language = language || getLanguage();
+
+            return labels[language][name];
 
         },
 
-        getTitle: getEventTitle,
+        getRecurringEvents: function () {
 
-        getLocation: getEventLocation,
+            return recurringEvents;
 
-        getZoomInfo: getZoomInfo
+        }
 
     };
 
