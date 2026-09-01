@@ -332,4 +332,27 @@
 
 </div>
 
+<script>
+    window.recurringEvents =
+        {{ index .Site.Data "recurring-events" | jsonify | safeJS }};
+
+    window.specialEvents = [
+        {{ range where .Site.RegularPages "Section" "events" }}
+        {
+            title: {{ .Params.title | jsonify | safeJS }},
+            title_en: {{ .Params.title_en | jsonify | safeJS }},
+
+            date: {{ .Params.date | jsonify | safeJS }},
+            time: {{ .Params.time | jsonify | safeJS }},
+
+            location: {{ .Params.location | jsonify | safeJS }},
+            location_en: {{ .Params.location_en | jsonify | safeJS }},
+
+            permalink: {{ .RelPermalink | jsonify | safeJS }}
+        },
+        {{ end }}
+    ];
+</script>
+
+<script src="{{ "js/home-schedule.js" | relURL }}"></script>
 {{ end }}
