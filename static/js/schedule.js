@@ -46,18 +46,10 @@
             noSpecial: "Không có sự kiện đặc biệt."
         }
     };
-
+    
 
     function getLanguage() {
-
-        if (
-            document.documentElement.lang === "en" ||
-            document.body.classList.contains("language-en")
-        ) {
-            return "en";
-        }
-
-        return "vi";
+        return localStorage.getItem("language") || "vi";
     }
 
 
