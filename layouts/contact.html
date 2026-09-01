@@ -1,0 +1,110 @@
+{{ define "main" }}
+
+{{ $parts := split .RawContent "<!-- EN -->" }}
+
+<article class="standard-page">
+
+    <div class="language-content vietnamese">
+
+        {{ index $parts 0 | markdownify }}
+
+        <div class="contact-details">
+
+            {{ with .Site.Params.address }}
+            <p>
+                <strong>📍 Địa chỉ</strong><br>
+                {{ . }}
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.phone }}
+            <p>
+                <strong>📞 Điện thoại</strong><br>
+                <a href="tel:{{ . }}">{{ . }}</a>
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.email }}
+            <p>
+                <strong>✉️ Email</strong><br>
+                <a href="mailto:{{ . }}">{{ . }}</a>
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.facebook }}
+            <p>
+                <strong>Facebook</strong><br>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    Facebook
+                </a>
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.youtube }}
+            <p>
+                <strong>YouTube</strong><br>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    YouTube
+                </a>
+            </p>
+            {{ end }}
+
+        </div>
+
+    </div>
+
+
+    <div class="language-content english">
+
+        {{ if gt (len $parts) 1 }}
+            {{ index $parts 1 | markdownify }}
+        {{ end }}
+
+        <div class="contact-details">
+
+            {{ with .Site.Params.addressEn }}
+            <p>
+                <strong>📍 Address</strong><br>
+                {{ . }}
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.phone }}
+            <p>
+                <strong>📞 Phone</strong><br>
+                <a href="tel:{{ . }}">{{ . }}</a>
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.email }}
+            <p>
+                <strong>✉️ Email</strong><br>
+                <a href="mailto:{{ . }}">{{ . }}</a>
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.facebook }}
+            <p>
+                <strong>Facebook</strong><br>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    Facebook
+                </a>
+            </p>
+            {{ end }}
+
+            {{ with .Site.Params.youtube }}
+            <p>
+                <strong>YouTube</strong><br>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    YouTube
+                </a>
+            </p>
+            {{ end }}
+
+        </div>
+
+    </div>
+
+</article>
+
+{{ end }}
