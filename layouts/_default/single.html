@@ -7,6 +7,15 @@
     <!-- Vietnamese -->
     <div class="language-content vietnamese">
 
+        {{ if .Params.poster }}
+        <div class="event-poster">
+            <img
+                src="/images/events/{{ .Params.poster }}"
+                alt="{{ .Params.title }}"
+            >
+        </div>
+        {{ end }}
+
         <h1>{{ .Params.title }}</h1>
 
         <div class="event-meta">
@@ -25,10 +34,26 @@
 
     </div>
 
+
     <!-- English -->
     {{ if gt (len $parts) 1 }}
 
     <div class="language-content english">
+
+        {{ $englishPoster := .Params.poster_en }}
+
+        {{ if not $englishPoster }}
+            {{ $englishPoster = .Params.poster }}
+        {{ end }}
+
+        {{ if $englishPoster }}
+        <div class="event-poster">
+            <img
+                src="/images/events/{{ $englishPoster }}"
+                alt="{{ .Params.title_en }}"
+            >
+        </div>
+        {{ end }}
 
         <h1>{{ .Params.title_en }}</h1>
 
