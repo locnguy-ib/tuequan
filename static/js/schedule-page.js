@@ -575,6 +575,10 @@
         }
     );
 
+    document.addEventListener("languageChanged", function () {
+        render();
+    });
+
 
     render();
 
