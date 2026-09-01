@@ -1,0 +1,53 @@
+{{ define "main" }}
+
+<article class="blog-post">
+
+    <header class="blog-post-header">
+
+        <h1>{{ .Title }}</h1>
+
+        <div class="blog-date">
+            {{ .Date.Format "02/01/2006" }}
+        </div>
+
+        {{ if .Params.image }}
+        <img
+            class="blog-post-image"
+            src="{{ printf "images/blog/%s" .Params.image | relURL }}"
+            alt="{{ .Title }}"
+        >
+        {{ end }}
+
+    </header>
+
+
+    <div class="blog-post-content">
+
+        {{ .Content }}
+
+    </div>
+
+
+    <nav class="blog-navigation">
+
+        {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}">
+            ← Bài trước
+        </a>
+        {{ end }}
+
+        <a href="{{ "blog/" | relURL }}">
+            Tất cả bài viết
+        </a>
+
+        {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}">
+            Bài sau →
+        </a>
+        {{ end }}
+
+    </nav>
+
+</article>
+
+{{ end }}
