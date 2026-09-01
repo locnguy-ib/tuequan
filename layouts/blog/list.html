@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+<article class="blog-page">
+
+    <h1>Blog</h1>
+
+    {{ $posts := where .Site.RegularPages "Section" "blog" }}
+
+    {{ if $posts }}
+
+    <div class="blog-list">
+
+        {{ range $posts.ByDate.Reverse }}
+
+        <article class="blog-card">
+
+            {{ if .Params.image }}
+            <a href="{{ .RelPermalink }}">
+                <img
+                    class="blog-card-image"
+                    src="{{ printf "images/blog/%s" .Params.image | relURL }}"
+                    alt="{{ .Title }}"
+                >
+            </a>
+            {{ end }}
+
+            <div class="blog-card-content">
+
+                <div class="blog-date">
+                    {{ .Date.Format "02/01/2006" }}
+                </div>
+
+                <h2>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Title }}
+                    </a>
+                </h2>
+
+                {{ with .Params.description }}
+                <p>{{ . }}</p>
+                {{ end }}
+
+                <a href="{{ .RelPermalink }}">
+                    Đọc tiếp →
+                </a>
+
+            </div>
+
+        </article>
+
+        {{ end }}
+
+    </div>
+
+    {{ else }}
+
+    <p>Chưa có bài viết.</p>
+
+    {{ end }}
+
+</article>
+
+{{ end }}
