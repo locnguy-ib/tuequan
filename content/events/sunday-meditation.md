@@ -17,8 +17,8 @@ description_en: "Join us for our 3 Day Weekend Meditation program - Sep 18, 19 &
 zoom: "https://zoom.us/j/123456789"
 zoom_info: "Meeting ID: 123 456 789"
 
-poster: "sunday-meditation-vi.png"
-poster_en: "sunday-meditation-vi.png"
+poster: "3daySuBuuDuc2026.jpg"
+poster_en: "3daySuBuuDuc2026.jpg"
 
 ---
 
