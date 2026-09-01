@@ -1,8 +1,6 @@
 (function () {
     "use strict";
 
-    let currentDate = new Date();
-
     const container =
         document.getElementById("monthlySchedule");
 
@@ -21,15 +19,15 @@
         const language =
             Schedule.getLanguage();
 
-        const year =
-            currentDate.getFullYear();
-
-        const month =
-            currentDate.getMonth();
-
 
         monthTitle.textContent =
-            `${Schedule.getMonthName(month, language)} ${year}`;
+            new Date().toLocaleDateString(
+                language === "vi" ? "vi-VN" : "en-US",
+                {
+                    month: "long",
+                    year: "numeric"
+                }
+            );
 
 
         previousButton.textContent =
@@ -39,42 +37,38 @@
             `${Schedule.getLabel("next", language)} →`;
 
 
-        const monthData =
-            Schedule.getMonth(year, month);
+        const events =
+            Schedule.getRecurringEvents();
 
 
-        let html = "";
+        let html = `
+            <section class="schedule-section">
+
+                <h2>
+                    ${Schedule.getLabel(
+                        "recurring",
+                        language
+                    )}
+                </h2>
+
+                <div class="recurring-events">
+        `;
 
 
-        monthData.days.forEach(day => {
-
-            const weekday =
-                Schedule.getDayName(
-                    day.weekday,
-                    language
-                );
-
+        if (!events.length) {
 
             html += `
-                <section class="schedule-day">
-
-                    <div class="schedule-date">
-
-                        <strong>
-                            ${weekday}
-                        </strong>
-
-                        <span>
-                            ${day.day}/${month + 1}
-                        </span>
-
-                    </div>
-
-                    <div class="schedule-events">
+                <p>
+                    ${Schedule.getLabel(
+                        "noRecurring",
+                        language
+                    )}
+                </p>
             `;
 
+        } else {
 
-            day.events.forEach(event => {
+            events.forEach(event => {
 
                 const title =
                     Schedule.getTitle(
@@ -94,13 +88,21 @@
                         language
                     );
 
+                const days =
+                    Schedule.getDayNames(
+                        event.days,
+                        language
+                    );
+
 
                 html += `
-                    <article class="schedule-event">
+                    <article class="recurring-event">
 
-                        <h3>
-                            ${title}
-                        </h3>
+                        <h3>${title}</h3>
+
+                        <div class="recurring-days">
+                            ${days}
+                        </div>
 
                         <div class="schedule-time">
                             🕐 ${event.time}
@@ -146,28 +148,32 @@
 
             });
 
-
-            html += `
-                    </div>
-
-                </section>
-            `;
-
-        });
+        }
 
 
-        if (!html) {
+        html += `
+                </div>
 
-            html = `
-                <p class="schedule-empty">
+            </section>
+
+            <section class="schedule-section">
+
+                <h2>
                     ${Schedule.getLabel(
-                        "noEvents",
+                        "special",
+                        language
+                    )}
+                </h2>
+
+                <p>
+                    ${Schedule.getLabel(
+                        "noSpecial",
                         language
                     )}
                 </p>
-            `;
 
-        }
+            </section>
+        `;
 
 
         container.innerHTML = html;
@@ -175,16 +181,18 @@
     }
 
 
+    /*
+     * Month navigation will be connected when
+     * special events are merged into the schedule.
+     *
+     * For now the recurring section is independent
+     * of the selected month.
+     */
+
     previousButton.addEventListener(
         "click",
         function () {
-
-            currentDate.setMonth(
-                currentDate.getMonth() - 1
-            );
-
             render();
-
         }
     );
 
@@ -192,13 +200,7 @@
     nextButton.addEventListener(
         "click",
         function () {
-
-            currentDate.setMonth(
-                currentDate.getMonth() + 1
-            );
-
             render();
-
         }
     );
 
