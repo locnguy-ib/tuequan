@@ -1,47 +1,183 @@
 {{ define "main" }}
 
-<h1>Welcome to {{ .Site.Title }}</h1>
+<div class="home-page">
 
-<p>
-    Welcome to Tuệ Quán Thiền Viện.
-</p>
+    <!-- Vietnamese -->
+    <div class="language-content vietnamese">
 
-<h2>Upcoming Events</h2>
+        <h1>Tuệ Quán Thiền Viện</h1>
 
-{{ $today := now }}
+        <p>
+            Trung tâm Thiền Minh Sát Vipassanā
+        </p>
 
-{{ $events := where site.RegularPages "Section" "events" }}
+        <h2>Sự kiện sắp tới</h2>
 
-{{ range first 5 (where $events "Date" "ge" $today) }}
+        {{ $events := where .Site.RegularPages "Section" "events" }}
+        {{ $upcoming := where $events "Date" "ge" now }}
 
-<article class="event">
+        {{ if $upcoming }}
 
-    <h3>
-        <a href="{{ .RelPermalink }}">
-            {{ .Title }}
-        </a>
-    </h3>
+        <div class="event-list">
 
-    <p class="event-date">
-        {{ .Date.Format "Monday, January 2, 2006" }}
-    </p>
+            {{ range first 5 $upcoming.ByDate }}
 
-    {{ with .Params.time }}
-    <p class="event-meta">{{ . }}</p>
-    {{ end }}
+            <article class="event-card">
 
-    {{ with .Params.location }}
-    <p class="event-meta">{{ . }}</p>
-    {{ end }}
+                <h3>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.title }}
+                    </a>
+                </h3>
 
-</article>
+                <div>📅 {{ .Date.Format "02/01/2006" }}</div>
+                <div>🕐 {{ .Params.time }}</div>
+                <div>📍 {{ .Params.location }}</div>
 
-{{ end }}
+                <p>{{ .Params.description }}</p>
 
-<p>
-    <a href="{{ "/events/" | relURL }}">
-        View all events →
-    </a>
-</p>
+                <a href="{{ .RelPermalink }}">
+                    Xem chi tiết →
+                </a>
+
+            </article>
+
+            {{ end }}
+
+        </div>
+
+        <p>
+            <a href="/events/">Xem tất cả sự kiện →</a>
+        </p>
+
+        {{ else }}
+
+        <p>Hiện chưa có sự kiện sắp tới.</p>
+
+        {{ end }}
+
+    </div>
+
+
+    <!-- English -->
+    <div class="language-content english">
+
+        <h1>Tuệ Quán Thiền Viện</h1>
+
+        <p>
+            Vipassanā Meditation Center
+        </p>
+
+        <h2>Upcoming Events</h2>
+
+        {{ if $upcoming }}
+
+        <div class="event-list">
+
+            {{ range first 5 $upcoming.ByDate }}
+
+            <article class="event-card">
+
+                <h3>
+                    <a href="{{ .RelPermalink }}">
+                        {{ .Params.title_en }}
+                    </a>
+                </h3>
+
+                <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+                <div>🕐 {{ .Params.time }}</div>
+                <div>📍 {{ .Params.location_en }}</div>
+
+                <p>{{ .Params.description_en }}</p>
+
+                <a href="{{ .RelPermalink }}">
+                    View details →
+                </a>
+
+            </article>
+
+            {{ end }}
+
+        </div>
+
+        <p>
+            <a href="/events/">View all events →</a>
+        </p>
+
+        {{ else }}
+
+        <p>There are currently no upcoming events.</p>
+
+        {{ end }}
+
+    </div>
+
+</div>
+
+
+<style>
+
+.home-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.event-list {
+    display: grid;
+    gap: 20px;
+    margin: 20px 0 30px;
+}
+
+.event-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.event-card h3 {
+    margin-top: 0;
+}
+
+.event-card a {
+    text-decoration: none;
+}
+
+.event-card div {
+    margin: 5px 0;
+    color: #555;
+}
+
+</style>
+
+
+<script>
+
+function updateLanguage() {
+
+    const language =
+        localStorage.getItem('language') || 'vi';
+
+    document
+        .querySelectorAll('.vietnamese')
+        .forEach(function(element) {
+
+            element.style.display =
+                language === 'vi' ? 'block' : 'none';
+
+        });
+
+    document
+        .querySelectorAll('.english')
+        .forEach(function(element) {
+
+            element.style.display =
+                language === 'en' ? 'block' : 'none';
+
+        });
+}
+
+updateLanguage();
+
+</script>
 
 {{ end }}
