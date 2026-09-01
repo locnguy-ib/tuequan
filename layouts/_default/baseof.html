@@ -25,7 +25,7 @@
 
     <link
         rel="stylesheet"
-        href="/css/site.css"
+        href="{{ "css/site.css" | relURL }}"
     >
 
 </head>
@@ -38,26 +38,26 @@
 
         <a
             class="site-title"
-            href="/"
+            href="{{ "" | relURL }}"
         >
             Tuệ Quán Thiền Viện
         </a>
 
         <nav class="site-nav">
 
-            <a href="/">
+            <a href="{{ "" | relURL }}">
                 Trang chủ
             </a>
 
-            <a href="/events/">
+            <a href="{{ "events/" | relURL }}">
                 Sự kiện
             </a>
 
-            <a href="/about/">
+            <a href="{{ "about/" | relURL }}">
                 Giới thiệu
             </a>
 
-            <a href="/contact/">
+            <a href="{{ "contact/" | relURL }}">
                 Liên hệ
             </a>
 
@@ -101,7 +101,7 @@
         </p>
 
         <p>
-            <a href="/contact/">Liên hệ / Contact</a>
+            <a href="{{ "contact/" | relURL }}">Liên hệ / Contact</a>
         </p>
 
         <p>
@@ -112,7 +112,7 @@
 
 </footer>
 
-<script src="/js/site.js"></script>
+<script src="{{ "js/site.js" | relURL }}"></script>
 
 </body>
 
