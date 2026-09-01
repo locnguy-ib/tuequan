@@ -1,6 +1,12 @@
 function setLanguage(language) {
     localStorage.setItem("language", language);
     updateLanguage();
+
+    document.dispatchEvent(
+        new CustomEvent("languageChanged", {
+            detail: { language: language }
+        })
+    );
 }
 
 function updateLanguage() {
