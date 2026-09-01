@@ -1,6 +1,7 @@
 ---
 title: "Liên hệ"
 title_en: "Contact"
+layout: "contact"
 ---
 
 <!-- VI -->
