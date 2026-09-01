@@ -5,13 +5,13 @@ defaultContentLanguage = "vi"
 
 [languages]
   [languages.vi]
-    languageName = "Tiếng Việt"
-    languageCode = "vi"
+    label = "Tiếng Việt"
+    locale = "vi"
     weight = 1
 
   [languages.en]
-    languageName = "English"
-    languageCode = "en"
+    label = "English"
+    locale = "en"
     weight = 2
 
 [params]
