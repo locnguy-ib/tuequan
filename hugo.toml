@@ -1,20 +1,8 @@
 baseURL = "https://tuequan.org/"
 title = "Tuệ Quán Thiền Viện"
 
-defaultContentLanguage = "vi"
-
-[languages]
-  [languages.vi]
-    label = "Tiếng Việt"
-    locale = "vi"
-    weight = 1
-
-  [languages.en]
-    label = "English"
-    locale = "en"
-    weight = 2
-
 [params]
+  defaultLanguage = "vi"
   description = "Tuệ Quán Thiền Viện — Vipassanā Meditation Center"
 
 [taxonomies]
