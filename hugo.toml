@@ -4,5 +4,16 @@ title = "Tuệ Quán Thiền Viện"
 [params]
   defaultLanguage = "vi"
   description = "Tuệ Quán Thiền Viện — Vipassanā Meditation Center"
-
+  
+  templeName = "Tuệ Quán Thiền Viện"
+  templeNameEn = "Tuệ Quán Thiền Viện"
+  
+  address = ""
+  addressEn = ""
+  
+  phone = ""
+  email = ""
+  
+  facebook = ""
+  youtube = ""
 [taxonomies]
