@@ -290,6 +290,40 @@ body {
     border-top: 1px solid #ddd;
 }
 
+.schedule-section {
+    margin-bottom: 50px;
+}
+
+.schedule-section h2 {
+    margin-bottom: 25px;
+}
+
+.recurring-events {
+    display: grid;
+    gap: 20px;
+}
+
+.recurring-event {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.recurring-event h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.recurring-days {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.schedule-time,
+.schedule-location,
+.schedule-zoom {
+    margin-top: 8px;
+}
+
 /* -------------------------
    Mobile
    ------------------------- */
