@@ -384,6 +384,20 @@ body {
     white-space: nowrap;
 }
 
+.site-nav .language-content {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.site-nav .language-content a {
+    padding: 0 14px;
+    border-right: 1px solid #ccc;
+}
+
+.site-nav .language-content a:last-child {
+    border-right: none;
+}
 /* -------------------------
    Mobile
    ------------------------- */
