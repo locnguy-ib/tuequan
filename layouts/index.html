@@ -5,56 +5,118 @@
     <!-- Vietnamese -->
     <div class="language-content vietnamese">
 
-        <h1>Tuệ Quán Thiền Viện</h1>
+        <section class="home-intro">
 
-        <p>
-            Trung tâm Thiền Minh Sát Vipassanā
-        </p>
+            <h1>Tuệ Quán Thiền Viện</h1>
 
-        <h2>Sự kiện sắp tới</h2>
+            <p class="home-subtitle">
+                Thiền Minh Sát Vipassanā
+            </p>
 
-        {{ $events := where .Site.RegularPages "Section" "events" }}
-        {{ $upcoming := where $events "Date" "ge" now }}
+            <p>
+                Kính chào quý vị đến với Tuệ Quán Thiền Viện.
+                Đây là nơi thực hành và học hỏi Giáo Pháp
+                theo truyền thống Phật giáo Theravāda.
+            </p>
 
-        {{ if $upcoming }}
+        </section>
 
-        <div class="event-list">
 
-            {{ range first 5 $upcoming.ByDate }}
+        <section class="home-events">
 
-            <article class="event-card">
+            <h2>Sự kiện sắp tới</h2>
 
-                <h3>
+            {{ $events := where .Site.RegularPages "Section" "events" }}
+            {{ $upcoming := where $events "Date" "ge" now }}
+
+            {{ if $upcoming }}
+
+            <div class="event-list">
+
+                {{ range first 5 $upcoming.ByDate }}
+
+                <article class="event-card">
+
+                    {{ if .Params.poster }}
                     <a href="{{ .RelPermalink }}">
-                        {{ .Params.title }}
+                        <img
+                            class="event-card-poster"
+                            src="/images/events/{{ .Params.poster }}"
+                            alt="{{ .Params.title }}"
+                        >
                     </a>
-                </h3>
+                    {{ end }}
 
-                <div>📅 {{ .Date.Format "02/01/2006" }}</div>
-                <div>🕐 {{ .Params.time }}</div>
-                <div>📍 {{ .Params.location }}</div>
+                    <h3>
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Params.title }}
+                        </a>
+                    </h3>
 
-                <p>{{ .Params.description }}</p>
+                    <div>📅 {{ .Date.Format "02/01/2006" }}</div>
+                    <div>🕐 {{ .Params.time }}</div>
+                    <div>📍 {{ .Params.location }}</div>
 
-                <a href="{{ .RelPermalink }}">
-                    Xem chi tiết →
+                    {{ if .Params.zoom }}
+                    <a
+                        class="zoom-button"
+                        href="{{ .Params.zoom }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Tham dự qua Zoom
+                    </a>
+                    {{ end }}
+
+                    <a href="{{ .RelPermalink }}">
+                        Xem chi tiết →
+                    </a>
+
+                </article>
+
+                {{ end }}
+
+            </div>
+
+            <p>
+                <a href="/events/">
+                    Xem tất cả sự kiện →
                 </a>
+            </p>
 
-            </article>
+            {{ else }}
+
+            <p>
+                Hiện chưa có sự kiện sắp tới.
+            </p>
 
             {{ end }}
 
-        </div>
+        </section>
 
-        <p>
-            <a href="/events/">Xem tất cả sự kiện →</a>
-        </p>
 
-        {{ else }}
+        <section class="home-info">
 
-        <p>Hiện chưa có sự kiện sắp tới.</p>
+            <h2>Thực hành Thiền Minh Sát</h2>
 
-        {{ end }}
+            <p>
+                Tuệ Quán Thiền Viện là nơi dành cho việc học hỏi,
+                thực hành thiền Minh Sát và nuôi dưỡng đời sống
+                tâm linh theo Giáo Pháp của Đức Phật.
+            </p>
+
+        </section>
+
+
+        <section class="home-contact">
+
+            <h2>Liên hệ</h2>
+
+            <p>
+                Tuệ Quán Thiền Viện
+            </p>
+
+        </section>
 
     </div>
 
@@ -62,53 +124,121 @@
     <!-- English -->
     <div class="language-content english">
 
-        <h1>Tuệ Quán Thiền Viện</h1>
+        <section class="home-intro">
 
-        <p>
-            Vipassanā Meditation Center
-        </p>
+            <h1>Tuệ Quán Thiền Viện</h1>
 
-        <h2>Upcoming Events</h2>
+            <p class="home-subtitle">
+                Vipassanā Meditation Center
+            </p>
 
-        {{ if $upcoming }}
+            <p>
+                Welcome to Tuệ Quán Thiền Viện.
+                We provide a place to learn and practice
+                the Dhamma according to the Theravāda Buddhist tradition.
+            </p>
 
-        <div class="event-list">
+        </section>
 
-            {{ range first 5 $upcoming.ByDate }}
 
-            <article class="event-card">
+        <section class="home-events">
 
-                <h3>
+            <h2>Upcoming Events</h2>
+
+            {{ if $upcoming }}
+
+            <div class="event-list">
+
+                {{ range first 5 $upcoming.ByDate }}
+
+                <article class="event-card">
+
+                    {{ $englishPoster := .Params.poster_en }}
+
+                    {{ if not $englishPoster }}
+                        {{ $englishPoster = .Params.poster }}
+                    {{ end }}
+
+                    {{ if $englishPoster }}
                     <a href="{{ .RelPermalink }}">
-                        {{ .Params.title_en }}
+                        <img
+                            class="event-card-poster"
+                            src="/images/events/{{ $englishPoster }}"
+                            alt="{{ .Params.title_en }}"
+                        >
                     </a>
-                </h3>
+                    {{ end }}
 
-                <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
-                <div>🕐 {{ .Params.time }}</div>
-                <div>📍 {{ .Params.location_en }}</div>
+                    <h3>
+                        <a href="{{ .RelPermalink }}">
+                            {{ .Params.title_en }}
+                        </a>
+                    </h3>
 
-                <p>{{ .Params.description_en }}</p>
+                    <div>📅 {{ .Date.Format "January 2, 2006" }}</div>
+                    <div>🕐 {{ .Params.time }}</div>
+                    <div>📍 {{ .Params.location_en }}</div>
 
-                <a href="{{ .RelPermalink }}">
-                    View details →
+                    {{ if .Params.zoom }}
+                    <a
+                        class="zoom-button"
+                        href="{{ .Params.zoom }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Join via Zoom
+                    </a>
+                    {{ end }}
+
+                    <a href="{{ .RelPermalink }}">
+                        View details →
+                    </a>
+
+                </article>
+
+                {{ end }}
+
+            </div>
+
+            <p>
+                <a href="/events/">
+                    View all events →
                 </a>
+            </p>
 
-            </article>
+            {{ else }}
+
+            <p>
+                There are currently no upcoming events.
+            </p>
 
             {{ end }}
 
-        </div>
+        </section>
 
-        <p>
-            <a href="/events/">View all events →</a>
-        </p>
 
-        {{ else }}
+        <section class="home-info">
 
-        <p>There are currently no upcoming events.</p>
+            <h2>Vipassanā Meditation Practice</h2>
 
-        {{ end }}
+            <p>
+                Tuệ Quán Thiền Viện provides a place for learning
+                and practicing Vipassanā meditation and cultivating
+                the spiritual life according to the Buddha's Dhamma.
+            </p>
+
+        </section>
+
+
+        <section class="home-contact">
+
+            <h2>Contact</h2>
+
+            <p>
+                Tuệ Quán Thiền Viện
+            </p>
+
+        </section>
 
     </div>
 
