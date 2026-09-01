@@ -1,0 +1,12 @@
+{{- $content := .Inner -}}
+{{- $parts := split $content "<!-- EN -->" -}}
+
+<div class="lang-vi">
+  {{ index $parts 0 | markdownify }}
+</div>
+
+{{ if gt (len $parts) 1 }}
+<div class="lang-en">
+  {{ index $parts 1 | markdownify }}
+</div>
+{{ end }}
