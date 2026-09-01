@@ -1,150 +1,133 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Locale }}">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>
-        {{ if .Title }}
-            {{ .Title }} | {{ .Site.Title }}
+        {{ if .IsHome }}
+            Tuệ Quán Thiền Viện
         {{ else }}
-            {{ .Site.Title }}
+            {{ .Title }} | Tuệ Quán Thiền Viện
         {{ end }}
     </title>
 
-    <meta name="description"
-          content="{{ .Site.Params.description }}">
-
     <style>
-
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            font-family:
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #faf9f7;
         }
 
-        header {
-            background: white;
+        .site-header {
             border-bottom: 1px solid #ddd;
+            padding: 15px 20px;
         }
 
         .header-inner {
             max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin: 0 auto;
         }
 
         .site-title {
             font-size: 1.4rem;
             font-weight: 600;
-        }
-
-        nav a {
-            margin-left: 20px;
             text-decoration: none;
-            color: #555;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        .event {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-
-        .event h2,
-        .event h3 {
-            margin-top: 0;
-        }
-
-        .event h2 a,
-        .event h3 a {
             color: inherit;
+        }
+
+        .site-nav {
+            margin-top: 10px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .site-nav a {
             text-decoration: none;
+            color: inherit;
         }
 
-        .event-date {
-            font-weight: 600;
+        .language-switch {
+            margin-left: auto;
         }
 
-        .event-meta {
-            color: #666;
+        .language-switch button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.95rem;
         }
 
-        footer {
+        .site-main {
             max-width: 1000px;
-            margin: 60px auto 30px;
-            padding: 20px;
-            border-top: 1px solid #ddd;
-            color: #777;
-            font-size: .9rem;
+            margin: 0 auto;
+            padding: 30px 20px;
         }
 
+        @media (max-width: 600px) {
+            .site-nav {
+                gap: 12px;
+            }
+
+            .language-switch {
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-<header>
-
+<header class="site-header">
     <div class="header-inner">
 
-        <div class="site-title">
-            {{ .Site.Title }}
-        </div>
+        <a class="site-title" href="/">
+            Tuệ Quán Thiền Viện
+        </a>
 
-        <nav>
-            <a href="{{ "/" | relURL }}">Home</a>
-            <a href="{{ "/events/" | relURL }}">Events</a>
+        <nav class="site-nav">
+
+            <a href="/">Trang chủ</a>
+
+            <a href="/events/">Sự kiện</a>
+
+            <a href="/about/">Giới thiệu</a>
+
+            <a href="/contact/">Liên hệ</a>
+
+            <span class="language-switch">
+                <button onclick="setLanguage('vi')">
+                    Tiếng Việt
+                </button>
+
+                |
+
+                <button onclick="setLanguage('en')">
+                    English
+                </button>
+            </span>
+
         </nav>
 
     </div>
-
 </header>
 
-<main>
-
+<main class="site-main">
     {{ block "main" . }}{{ end }}
-
 </main>
 
-<footer>
-
-    © {{ now.Year }} {{ .Site.Title }}
-
-</footer>
+<script>
+function setLanguage(language) {
+    localStorage.setItem('language', language);
+    location.reload();
+}
+</script>
 
 </body>
-
 </html>
