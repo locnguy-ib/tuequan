@@ -49,19 +49,23 @@
         {
             title: {{ .Title | jsonify | safeJS }},
             title_en: {{ .Params.title_en | jsonify | safeJS }},
-
+    
             date: {{ .Params.date | jsonify | safeJS }},
+            date_to: {{ .Params.date_to | jsonify | safeJS }},
             time: {{ .Params.time | jsonify | safeJS }},
-
+    
+            facilitator: {{ .Params.facilitator | jsonify | safeJS }},
+            facilitator_en: {{ .Params.facilitator_en | jsonify | safeJS }},
+    
             location: {{ .Params.location | jsonify | safeJS }},
             location_en: {{ .Params.location_en | jsonify | safeJS }},
-
+    
             description: {{ .Params.description | jsonify | safeJS }},
             description_en: {{ .Params.description_en | jsonify | safeJS }},
-
+    
             zoom: {{ .Params.zoom | jsonify | safeJS }},
             zoom_info: {{ .Params.zoom_info | jsonify | safeJS }},
-
+    
             permalink: {{ .RelPermalink | jsonify | safeJS }}
         },
         {{ end }}
