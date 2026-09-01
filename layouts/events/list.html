@@ -12,6 +12,7 @@
         <h1>Sự kiện</h1>
 
         {{ if $upcoming }}
+
         <h2>Sắp diễn ra</h2>
 
         <div class="event-list">
@@ -19,6 +20,16 @@
             {{ range $upcoming.ByDate }}
 
             <article class="event-card">
+
+                {{ if .Params.poster }}
+                <a href="{{ .RelPermalink }}">
+                    <img
+                        class="event-card-poster"
+                        src="/images/events/{{ .Params.poster }}"
+                        alt="{{ .Params.title }}"
+                    >
+                </a>
+                {{ end }}
 
                 <h3>
                     <a href="{{ .RelPermalink }}">
@@ -32,6 +43,17 @@
 
                 <p>{{ .Params.description }}</p>
 
+                {{ if .Params.zoom }}
+                <a
+                    class="zoom-button"
+                    href="{{ .Params.zoom }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Tham dự qua Zoom
+                </a>
+                {{ end }}
+
                 <a href="{{ .RelPermalink }}">
                     Xem chi tiết →
                 </a>
@@ -41,6 +63,7 @@
             {{ end }}
 
         </div>
+
         {{ end }}
 
 
@@ -53,6 +76,16 @@
             {{ range $past.ByDate.Reverse }}
 
             <article class="event-card">
+
+                {{ if .Params.poster }}
+                <a href="{{ .RelPermalink }}">
+                    <img
+                        class="event-card-poster"
+                        src="/images/events/{{ .Params.poster }}"
+                        alt="{{ .Params.title }}"
+                    >
+                </a>
+                {{ end }}
 
                 <h3>
                     <a href="{{ .RelPermalink }}">
@@ -84,6 +117,7 @@
         <h1>Events</h1>
 
         {{ if $upcoming }}
+
         <h2>Upcoming Events</h2>
 
         <div class="event-list">
@@ -91,6 +125,22 @@
             {{ range $upcoming.ByDate }}
 
             <article class="event-card">
+
+                {{ $englishPoster := .Params.poster_en }}
+
+                {{ if not $englishPoster }}
+                    {{ $englishPoster = .Params.poster }}
+                {{ end }}
+
+                {{ if $englishPoster }}
+                <a href="{{ .RelPermalink }}">
+                    <img
+                        class="event-card-poster"
+                        src="/images/events/{{ $englishPoster }}"
+                        alt="{{ .Params.title_en }}"
+                    >
+                </a>
+                {{ end }}
 
                 <h3>
                     <a href="{{ .RelPermalink }}">
@@ -104,6 +154,17 @@
 
                 <p>{{ .Params.description_en }}</p>
 
+                {{ if .Params.zoom }}
+                <a
+                    class="zoom-button"
+                    href="{{ .Params.zoom }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    Join via Zoom
+                </a>
+                {{ end }}
+
                 <a href="{{ .RelPermalink }}">
                     View details →
                 </a>
@@ -113,6 +174,7 @@
             {{ end }}
 
         </div>
+
         {{ end }}
 
 
@@ -125,6 +187,22 @@
             {{ range $past.ByDate.Reverse }}
 
             <article class="event-card">
+
+                {{ $englishPoster := .Params.poster_en }}
+
+                {{ if not $englishPoster }}
+                    {{ $englishPoster = .Params.poster }}
+                {{ end }}
+
+                {{ if $englishPoster }}
+                <a href="{{ .RelPermalink }}">
+                    <img
+                        class="event-card-poster"
+                        src="/images/events/{{ $englishPoster }}"
+                        alt="{{ .Params.title_en }}"
+                    >
+                </a>
+                {{ end }}
 
                 <h3>
                     <a href="{{ .RelPermalink }}">
