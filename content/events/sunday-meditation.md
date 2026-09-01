@@ -1,26 +1,16 @@
 ---
-title: "Sunday Meditation"
-title_vi: "Thiền Chủ Nhật"
+title: "Thiền Chủ Nhật"
+title_en: "Sunday Meditation"
 
 date: 2026-09-06
 time: "9:00 AM – 12:00 PM"
 
 location: "Tuệ Quán Thiền Viện"
-location_vi: "Tuệ Quán Thiền Viện"
+location_en: "Tuệ Quán Thiền Viện"
 
-description: "Join us for our Sunday meditation program."
-description_vi: "Kính mời quý vị tham dự chương trình thiền Chủ Nhật."
+description: "Kính mời quý vị tham dự chương trình thiền Chủ Nhật."
+description_en: "Join us for our Sunday meditation program."
 ---
-
-## Program
-
-9:00 AM — Morning chanting
-
-9:30 AM — Vipassanā meditation
-
-10:30 AM — Dhamma talk
-
-11:30 AM — Lunch offering
 
 ## Chương trình
 
@@ -31,3 +21,15 @@ description_vi: "Kính mời quý vị tham dự chương trình thiền Chủ N
 10:30 AM — Pháp thoại
 
 11:30 AM — Cúng dường trai tăng
+
+<!-- EN -->
+
+## Program
+
+9:00 AM — Morning chanting
+
+9:30 AM — Vipassanā meditation
+
+10:30 AM — Dhamma talk
+
+11:30 AM — Lunch offering
