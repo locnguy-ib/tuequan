@@ -29,12 +29,34 @@
 
     }
 
-
     function formatEventDate(dateString, language) {
 
+        const dateOnly =
+            String(dateString).substring(0, 10);
+    
+        const parts =
+            dateOnly.split("-");
+    
+    
+        if (parts.length !== 3) {
+            return dateOnly;
+        }
+    
+    
+        const year =
+            Number(parts[0]);
+    
+        const month =
+            Number(parts[1]) - 1;
+    
+        const day =
+            Number(parts[2]);
+    
+    
         const date =
-            new Date(dateString + "T00:00:00");
-
+            new Date(year, month, day);
+    
+    
         return new Intl.DateTimeFormat(
             language === "vi" ? "vi-VN" : "en-US",
             {
@@ -43,7 +65,7 @@
                 month: "numeric"
             }
         ).format(date);
-
+    
     }
 
 
@@ -51,30 +73,60 @@
 
         const events =
             window.specialEvents || [];
-
+    
         const year =
             currentDate.getFullYear();
-
+    
         const month =
             currentDate.getMonth();
-
-
+    
+    
         return events.filter(event => {
-
+    
             if (!event.date) {
                 return false;
             }
-
-            const date =
-                new Date(event.date + "T00:00:00");
-
+    
+    
+            /*
+             * Treat the event date as a calendar date.
+             * Do not let the browser timezone change it.
+             *
+             * Hugo may output the date as:
+             *
+             * 2026-09-06
+             *
+             * or:
+             *
+             * 2026-09-06T00:00:00Z
+             */
+            const dateString =
+                String(event.date).substring(0, 10);
+    
+    
+            const parts =
+                dateString.split("-");
+    
+    
+            if (parts.length !== 3) {
+                return false;
+            }
+    
+    
+            const eventYear =
+                Number(parts[0]);
+    
+            const eventMonth =
+                Number(parts[1]) - 1;
+    
+    
             return (
-                date.getFullYear() === year &&
-                date.getMonth() === month
+                eventYear === year &&
+                eventMonth === month
             );
-
+    
         });
-
+    
     }
 
 
