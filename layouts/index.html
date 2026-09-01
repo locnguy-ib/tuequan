@@ -111,11 +111,39 @@
         <section class="home-contact">
 
             <h2>Liên hệ</h2>
-
+        
             <p>
-                Tuệ Quán Thiền Viện
+                {{ .Site.Params.templeName }}
             </p>
-
+        
+            {{ with .Site.Params.address }}
+            <p>📍 {{ . }}</p>
+            {{ end }}
+        
+            {{ with .Site.Params.phone }}
+            <p>📞 {{ . }}</p>
+            {{ end }}
+        
+            {{ with .Site.Params.email }}
+            <p>✉️ {{ . }}</p>
+            {{ end }}
+        
+            {{ with .Site.Params.facebook }}
+            <p>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    Facebook
+                </a>
+            </p>
+            {{ end }}
+        
+            {{ with .Site.Params.youtube }}
+            <p>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    YouTube
+                </a>
+            </p>
+            {{ end }}
+        
         </section>
 
     </div>
@@ -233,11 +261,39 @@
         <section class="home-contact">
 
             <h2>Contact</h2>
-
+        
             <p>
-                Tuệ Quán Thiền Viện
+                {{ .Site.Params.templeNameEn }}
             </p>
-
+        
+            {{ with .Site.Params.addressEn }}
+            <p>📍 {{ . }}</p>
+            {{ end }}
+        
+            {{ with .Site.Params.phone }}
+            <p>📞 {{ . }}</p>
+            {{ end }}
+        
+            {{ with .Site.Params.email }}
+            <p>✉️ {{ . }}</p>
+            {{ end }}
+        
+            {{ with .Site.Params.facebook }}
+            <p>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    Facebook
+                </a>
+            </p>
+            {{ end }}
+        
+            {{ with .Site.Params.youtube }}
+            <p>
+                <a href="{{ . }}" target="_blank" rel="noopener">
+                    YouTube
+                </a>
+            </p>
+            {{ end }}
+        
         </section>
 
     </div>
