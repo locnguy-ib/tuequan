@@ -29,43 +29,128 @@
 
     }
 
-    function formatEventDate(dateString, language) {
+
+    function parseDate(dateString) {
 
         const dateOnly =
             String(dateString).substring(0, 10);
-    
+
         const parts =
             dateOnly.split("-");
-    
-    
+
         if (parts.length !== 3) {
-            return dateOnly;
+            return null;
         }
-    
-    
-        const year =
-            Number(parts[0]);
-    
-        const month =
-            Number(parts[1]) - 1;
-    
-        const day =
-            Number(parts[2]);
-    
-    
+
+        return new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2])
+        );
+
+    }
+
+
+    function formatDate(dateString, language) {
+
         const date =
-            new Date(year, month, day);
-    
-    
+            parseDate(dateString);
+
+        if (!date) {
+            return dateString || "";
+        }
+
         return new Intl.DateTimeFormat(
             language === "vi" ? "vi-VN" : "en-US",
             {
-                weekday: "long",
                 day: "numeric",
-                month: "numeric"
+                month: "numeric",
+                year: "numeric"
             }
         ).format(date);
-    
+
+    }
+
+
+    function formatDateRange(event, language) {
+
+        const start =
+            parseDate(event.date);
+
+        if (!start) {
+            return "";
+        }
+
+
+        if (!event.date_to) {
+
+            return formatDate(
+                event.date,
+                language
+            );
+
+        }
+
+
+        const end =
+            parseDate(event.date_to);
+
+        if (!end) {
+            return formatDate(
+                event.date,
+                language
+            );
+        }
+
+
+        const locale =
+            language === "vi"
+                ? "vi-VN"
+                : "en-US";
+
+
+        /*
+         * English:
+         * September 6–8, 2026
+         *
+         * Vietnamese:
+         * 6–8/9/2026
+         */
+        if (language === "en") {
+
+            if (
+                start.getMonth() === end.getMonth() &&
+                start.getFullYear() === end.getFullYear()
+            ) {
+
+                const month =
+                    new Intl.DateTimeFormat(
+                        locale,
+                        { month: "long" }
+                    ).format(start);
+
+                return `${month} ${start.getDate()}–${end.getDate()}, ${start.getFullYear()}`;
+
+            }
+
+
+            return `${formatDate(event.date, language)} – ${formatDate(event.date_to, language)}`;
+
+        }
+
+
+        if (
+            start.getMonth() === end.getMonth() &&
+            start.getFullYear() === end.getFullYear()
+        ) {
+
+            return `${start.getDate()}–${end.getDate()}/${start.getMonth() + 1}/${start.getFullYear()}`;
+
+        }
+
+
+        return `${formatDate(event.date, language)} – ${formatDate(event.date_to, language)}`;
+
     }
 
 
@@ -73,60 +158,54 @@
 
         const events =
             window.specialEvents || [];
-    
+
+
         const year =
             currentDate.getFullYear();
-    
+
         const month =
             currentDate.getMonth();
-    
-    
+
+
+        /*
+         * IMPORTANT:
+         *
+         * Only the START date is used
+         * for monthly filtering.
+         */
         return events.filter(event => {
-    
+
             if (!event.date) {
                 return false;
             }
-    
-    
-            /*
-             * Treat the event date as a calendar date.
-             * Do not let the browser timezone change it.
-             *
-             * Hugo may output the date as:
-             *
-             * 2026-09-06
-             *
-             * or:
-             *
-             * 2026-09-06T00:00:00Z
-             */
+
+
             const dateString =
                 String(event.date).substring(0, 10);
-    
-    
+
             const parts =
                 dateString.split("-");
-    
-    
+
+
             if (parts.length !== 3) {
                 return false;
             }
-    
-    
+
+
             const eventYear =
                 Number(parts[0]);
-    
+
             const eventMonth =
                 Number(parts[1]) - 1;
-    
-    
+
+
             return (
                 eventYear === year &&
                 eventMonth === month
             );
-    
+
         });
-    
+
     }
 
 
@@ -162,7 +241,41 @@
         } else {
 
             html += `
-                <div class="special-events">
+                <div class="schedule-table-wrapper">
+
+                    <table class="schedule-table">
+
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Sự kiện"
+                                        : "Event"}
+                                </th>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Ngày & Giờ"
+                                        : "Date & Time"}
+                                </th>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Người hướng dẫn"
+                                        : "Facilitator"}
+                                </th>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Địa điểm"
+                                        : "Location"}
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
             `;
 
 
@@ -173,97 +286,58 @@
                         ? event.title_en
                         : event.title;
 
+                const facilitator =
+                    language === "en"
+                        ? event.facilitator_en
+                        : event.facilitator;
+
                 const location =
                     language === "en"
                         ? event.location_en
                         : event.location;
 
-                const description =
-                    language === "en"
-                        ? event.description_en
-                        : event.description;
-
 
                 html += `
-                    <article class="special-event">
+                    <tr>
 
-                        <div class="special-event-date">
-                            ${formatEventDate(
-                                event.date,
-                                language
-                            )}
-                        </div>
+                        <td>
+                            <a href="${event.permalink}">
+                                ${title}
+                            </a>
+                        </td>
 
-                        <h3>
-                            ${title}
-                        </h3>
-
-                        <div class="schedule-time">
-                            🕐 ${event.time || ""}
-                        </div>
-
-                        <div class="schedule-location">
-                            📍 ${location || ""}
-                        </div>
-                `;
-
-
-                if (description) {
-
-                    html += `
-                        <p class="special-event-description">
-                            ${description}
-                        </p>
-                    `;
-
-                }
-
-
-                if (event.zoom) {
-
-                    html += `
-                        <div class="schedule-zoom">
-
-                            <a
-                                href="${event.zoom}"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                ${Schedule.getLabel(
-                                    "zoom",
+                        <td>
+                            <div>
+                                ${formatDateRange(
+                                    event,
                                     language
                                 )}
-                            </a>
+                            </div>
 
-                            ${
-                                event.zoom_info
-                                    ? `<span>${event.zoom_info}</span>`
-                                    : ""
-                            }
+                            <div class="schedule-time">
+                                ${event.time || ""}
+                            </div>
+                        </td>
 
-                        </div>
-                    `;
+                        <td>
+                            ${facilitator || "—"}
+                        </td>
 
-                }
+                        <td>
+                            ${location || "—"}
+                        </td>
 
-
-                html += `
-                        <a
-                            class="special-event-link"
-                            href="${event.permalink}"
-                        >
-                            ${language === "en"
-                                ? "View event →"
-                                : "Xem sự kiện →"}
-                        </a>
-
-                    </article>
+                    </tr>
                 `;
 
             });
 
 
             html += `
+                        </tbody>
+
+                    </table>
+
                 </div>
             `;
 
@@ -295,8 +369,6 @@
                         language
                     )}
                 </h2>
-
-                <div class="recurring-events">
         `;
 
 
@@ -313,6 +385,45 @@
 
         } else {
 
+            html += `
+                <div class="schedule-table-wrapper">
+
+                    <table class="schedule-table">
+
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Sinh hoạt"
+                                        : "Event"}
+                                </th>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Ngày & Giờ"
+                                        : "Date & Time"}
+                                </th>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Người hướng dẫn"
+                                        : "Facilitator"}
+                                </th>
+
+                                <th>
+                                    ${language === "vi"
+                                        ? "Địa điểm"
+                                        : "Location"}
+                                </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+            `;
+
+
             events.forEach(event => {
 
                 const title =
@@ -321,14 +432,13 @@
                         language
                     );
 
+                const facilitator =
+                    language === "en"
+                        ? event.facilitator_en
+                        : event.facilitator_vi;
+
                 const location =
                     Schedule.getLocation(
-                        event,
-                        language
-                    );
-
-                const zoomInfo =
-                    Schedule.getZoomInfo(
                         event,
                         language
                     );
@@ -341,64 +451,50 @@
 
 
                 html += `
-                    <article class="recurring-event">
+                    <tr>
 
-                        <h3>${title}</h3>
+                        <td>
+                            ${title}
+                        </td>
 
-                        <div class="recurring-days">
-                            ${days}
-                        </div>
+                        <td>
 
-                        <div class="schedule-time">
-                            🕐 ${event.time}
-                        </div>
+                            <div>
+                                ${days}
+                            </div>
 
-                        <div class="schedule-location">
-                            📍 ${location}
-                        </div>
-                `;
+                            <div class="schedule-time">
+                                ${event.time || ""}
+                            </div>
 
+                        </td>
 
-                if (event.zoom) {
+                        <td>
+                            ${facilitator || "—"}
+                        </td>
 
-                    html += `
-                        <div class="schedule-zoom">
+                        <td>
+                            ${location || "—"}
+                        </td>
 
-                            <a
-                                href="${event.zoom}"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                ${Schedule.getLabel(
-                                    "zoom",
-                                    language
-                                )}
-                            </a>
-
-                            ${
-                                zoomInfo
-                                    ? `<span>${zoomInfo}</span>`
-                                    : ""
-                            }
-
-                        </div>
-                    `;
-
-                }
-
-
-                html += `
-                    </article>
+                    </tr>
                 `;
 
             });
+
+
+            html += `
+                        </tbody>
+
+                    </table>
+
+                </div>
+            `;
 
         }
 
 
         html += `
-                </div>
-
             </section>
         `;
 
@@ -433,14 +529,14 @@
 
 
         /*
-         * Special events FIRST.
+         * Special Events FIRST
          */
         let html =
             renderSpecialEvents(language);
 
 
         /*
-         * Recurring events SECOND.
+         * Recurring Events SECOND
          */
         html +=
             renderRecurringEvents(language);
