@@ -25,7 +25,6 @@
 
     </div>
 
-
     <!-- English -->
     {{ if gt (len $parts) 1 }}
 
@@ -52,59 +51,5 @@
     {{ end }}
 
 </article>
-
-
-<style>
-
-.event-page {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.event-meta {
-    margin: 20px 0;
-    color: #555;
-}
-
-.event-meta div {
-    margin: 5px 0;
-}
-
-.language-content.english {
-    display: none;
-}
-
-</style>
-
-
-<script>
-
-function updateLanguage() {
-
-    const language =
-        localStorage.getItem('language') || 'vi';
-
-    document
-        .querySelectorAll('.vietnamese')
-        .forEach(function(element) {
-
-            element.style.display =
-                language === 'vi' ? 'block' : 'none';
-
-        });
-
-    document
-        .querySelectorAll('.english')
-        .forEach(function(element) {
-
-            element.style.display =
-                language === 'en' ? 'block' : 'none';
-
-        });
-}
-
-updateLanguage();
-
-</script>
 
 {{ end }}
