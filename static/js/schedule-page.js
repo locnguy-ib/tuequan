@@ -30,40 +30,206 @@
     }
 
 
-    function render() {
+    function formatEventDate(dateString, language) {
 
-        const language =
-            Schedule.getLanguage();
+        const date =
+            new Date(dateString + "T00:00:00");
 
+        return new Intl.DateTimeFormat(
+            language === "vi" ? "vi-VN" : "en-US",
+            {
+                weekday: "long",
+                day: "numeric",
+                month: "numeric"
+            }
+        ).format(date);
 
-        /*
-         * Display selected month.
-         */
-        monthTitle.textContent =
-            getMonthTitle(language);
-
-
-        previousButton.textContent =
-            `← ${Schedule.getLabel(
-                "previous",
-                language
-            )}`;
+    }
 
 
-        nextButton.textContent =
-            `${Schedule.getLabel(
-                "next",
-                language
-            )} →`;
+    function getSpecialEvents() {
+
+        const events =
+            window.specialEvents || [];
+
+        const year =
+            currentDate.getFullYear();
+
+        const month =
+            currentDate.getMonth();
 
 
-        /*
-         * Recurring events
-         *
-         * These are displayed once because they
-         * repeat every week. They are not expanded
-         * into individual dates.
-         */
+        return events.filter(event => {
+
+            if (!event.date) {
+                return false;
+            }
+
+            const date =
+                new Date(event.date + "T00:00:00");
+
+            return (
+                date.getFullYear() === year &&
+                date.getMonth() === month
+            );
+
+        });
+
+    }
+
+
+    function renderSpecialEvents(language) {
+
+        const events =
+            getSpecialEvents();
+
+
+        let html = `
+            <section class="schedule-section">
+
+                <h2>
+                    ${Schedule.getLabel(
+                        "special",
+                        language
+                    )}
+                </h2>
+        `;
+
+
+        if (!events.length) {
+
+            html += `
+                <p class="schedule-empty">
+                    ${Schedule.getLabel(
+                        "noSpecial",
+                        language
+                    )}
+                </p>
+            `;
+
+        } else {
+
+            html += `
+                <div class="special-events">
+            `;
+
+
+            events.forEach(event => {
+
+                const title =
+                    language === "en"
+                        ? event.title_en
+                        : event.title;
+
+                const location =
+                    language === "en"
+                        ? event.location_en
+                        : event.location;
+
+                const description =
+                    language === "en"
+                        ? event.description_en
+                        : event.description;
+
+
+                html += `
+                    <article class="special-event">
+
+                        <div class="special-event-date">
+                            ${formatEventDate(
+                                event.date,
+                                language
+                            )}
+                        </div>
+
+                        <h3>
+                            ${title}
+                        </h3>
+
+                        <div class="schedule-time">
+                            🕐 ${event.time || ""}
+                        </div>
+
+                        <div class="schedule-location">
+                            📍 ${location || ""}
+                        </div>
+                `;
+
+
+                if (description) {
+
+                    html += `
+                        <p class="special-event-description">
+                            ${description}
+                        </p>
+                    `;
+
+                }
+
+
+                if (event.zoom) {
+
+                    html += `
+                        <div class="schedule-zoom">
+
+                            <a
+                                href="${event.zoom}"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                ${Schedule.getLabel(
+                                    "zoom",
+                                    language
+                                )}
+                            </a>
+
+                            ${
+                                event.zoom_info
+                                    ? `<span>${event.zoom_info}</span>`
+                                    : ""
+                            }
+
+                        </div>
+                    `;
+
+                }
+
+
+                html += `
+                        <a
+                            class="special-event-link"
+                            href="${event.permalink}"
+                        >
+                            ${language === "en"
+                                ? "View event →"
+                                : "Xem sự kiện →"}
+                        </a>
+
+                    </article>
+                `;
+
+            });
+
+
+            html += `
+                </div>
+            `;
+
+        }
+
+
+        html += `
+            </section>
+        `;
+
+
+        return html;
+
+    }
+
+
+    function renderRecurringEvents(language) {
+
         const events =
             Schedule.getRecurringEvents();
 
@@ -182,29 +348,54 @@
                 </div>
 
             </section>
-
-
-            <section class="schedule-section">
-
-                <h2>
-                    ${Schedule.getLabel(
-                        "special",
-                        language
-                    )}
-                </h2>
-
-                <p>
-                    ${Schedule.getLabel(
-                        "noSpecial",
-                        language
-                    )}
-                </p>
-
-            </section>
         `;
 
 
-        container.innerHTML = html;
+        return html;
+
+    }
+
+
+    function render() {
+
+        const language =
+            Schedule.getLanguage();
+
+
+        monthTitle.textContent =
+            getMonthTitle(language);
+
+
+        previousButton.textContent =
+            `← ${Schedule.getLabel(
+                "previous",
+                language
+            )}`;
+
+
+        nextButton.textContent =
+            `${Schedule.getLabel(
+                "next",
+                language
+            )} →`;
+
+
+        /*
+         * Special events FIRST.
+         */
+        let html =
+            renderSpecialEvents(language);
+
+
+        /*
+         * Recurring events SECOND.
+         */
+        html +=
+            renderRecurringEvents(language);
+
+
+        container.innerHTML =
+            html;
 
     }
 
