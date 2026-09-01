@@ -1,65 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ if eq .Site.Params.defaultLanguage "vi" }}vi{{ else }}en{{ end }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{{ define "main" }}
 
-    <title>
-        {{ if eq .Site.Params.defaultLanguage "vi" }}
-            {{ .Params.title_vi }}
-        {{ else }}
-            {{ .Params.title }}
-        {{ end }}
-        | Tuệ Quán Thiền Viện
-    </title>
-
-    <style>
-        body {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: system-ui, sans-serif;
-            line-height: 1.6;
-        }
-
-        .language-switch {
-            margin-bottom: 30px;
-        }
-
-        .language-switch button {
-            padding: 8px 14px;
-            margin-right: 5px;
-            cursor: pointer;
-        }
-
-        .event-meta {
-            color: #555;
-            margin: 20px 0;
-        }
-
-        .event-meta div {
-            margin: 5px 0;
-        }
-
-        .english {
-            display: none;
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-    <div class="language-switch">
-        <button onclick="setLanguage('vi')">Tiếng Việt</button>
-        <button onclick="setLanguage('en')">English</button>
-    </div>
-</header>
-
-<main>
+<article class="event-page">
 
     <!-- Vietnamese -->
-    <article class="language-content vietnamese">
+    <div class="language-content vietnamese">
 
         <h1>{{ .Params.title_vi }}</h1>
 
@@ -73,12 +17,14 @@
 
         <hr>
 
-        {{ .Content }}
+        <div class="event-body">
+            {{ .Content }}
+        </div>
 
-    </article>
+    </div>
 
     <!-- English -->
-    <article class="language-content english">
+    <div class="language-content english">
 
         <h1>{{ .Params.title }}</h1>
 
@@ -90,24 +36,46 @@
 
         <p>{{ .Params.description }}</p>
 
-    </article>
+    </div>
 
-</main>
+</article>
 
-<script>
-function setLanguage(language) {
-    document.querySelector('.vietnamese').style.display =
-        language === 'vi' ? 'block' : 'none';
-
-    document.querySelector('.english').style.display =
-        language === 'en' ? 'block' : 'none';
-
-    localStorage.setItem('language', language);
+<style>
+.event-page {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-const savedLanguage = localStorage.getItem('language') || 'vi';
-setLanguage(savedLanguage);
+.event-meta {
+    margin: 20px 0;
+    color: #555;
+}
+
+.event-meta div {
+    margin: 5px 0;
+}
+
+.language-content.english {
+    display: none;
+}
+</style>
+
+<script>
+function updateLanguage() {
+    const language = localStorage.getItem('language') || 'vi';
+
+    document.querySelectorAll('.vietnamese').forEach(function (element) {
+        element.style.display =
+            language === 'vi' ? 'block' : 'none';
+    });
+
+    document.querySelectorAll('.english').forEach(function (element) {
+        element.style.display =
+            language === 'en' ? 'block' : 'none';
+    });
+}
+
+updateLanguage();
 </script>
 
-</body>
-</html>
+{{ end }}
