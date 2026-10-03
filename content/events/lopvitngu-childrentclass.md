@@ -15,8 +15,8 @@ location_en: "Tue Quan Vipassanā Vihāra"
 description: "Kính mời quý phụ huynh đăng ký ghi danh"
 description_en: "We warmly invite parents to register their children"
 
-Link: "https://tinyurl.com/lopvietngu"
-Link_info: "https://tinyurl.com/lopvietngu"
+link: "https://tinyurl.com/lopvietngu"
+link_info: "https://tinyurl.com/lopvietngu"
 
 poster: "vietngu.jpg"
 poster_en: "childrenclass.jpg"
