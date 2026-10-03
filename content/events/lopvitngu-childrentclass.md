@@ -7,8 +7,8 @@ date_to:
 time: "Thứ Bảy hàng tuần, 2:00 PM – 4:30 PM"
 time_en: "Every Saturday, 2:00 PM – 4:30 PM"
 
-facilitator: ""
-facilitator_en: ""
+facilitator: "Các thầy cô Tuệ Quán"
+facilitator_en: "Volunteers"
 
 location: "Tuệ Quán Thiền Viện"
 location_en: "Tue Quan Vipassanā Vihāra"
