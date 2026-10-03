@@ -1,22 +1,22 @@
 ---
-title: "Khóa Thiền 3 Ngày Cuối Tuần"
-title_en: "3 Day Weekend Meditation Retreat"
+title: "Lớp Việt Ngữ"
+title_en: "Children class"
 
-date: 2026-09-18
-date_to: 2026-09-20
-time: "7:45 AM – 18:00 PM"
+date: 2026-10-18
+date_to: 
+time: "2:00 PM – 4:30 PM"
 
-facilitator: "Từ Khưu Bửu Đức"
-facilitator_en: "Bhikku Ratanaguṇa"
+facilitator: ""
+facilitator_en: ""
 
 location: "Tuệ Quán Thiền Viện"
-location_en: "Tuệ Quán Thiền Viện"
+location_en: "Tue Quan Vipassanā Vihāra"
 
-description: "Kính mời quý vị tham dự khóa thiền 3 ngày cuối tuần - 18, 19 & 20 tháng 9, 2026"
-description_en: "Join us for our 3 Day Weekend Meditation program - Sep 18, 19 & 20, 2026"
+description: "Kính mời quý phụ huynh đăng ký ghi danh"
+description_en: "We warmly invite parents to register their children"
 
-zoom: ""
-zoom_info: ""
+Link: "https://tinyurl.com/lopvietngu"
+Link_info: "https://tinyurl.com/lopvietngu"
 
 poster: "3daySuBuuDuc2026.jpg"
 poster_en: "3daySuBuuDuc2026.jpg"
