@@ -18,17 +18,20 @@ description_en: "We warmly invite parents to register their children"
 Link: "https://tinyurl.com/lopvietngu"
 Link_info: "https://tinyurl.com/lopvietngu"
 
-poster: "3daySuBuuDuc2026.jpg"
-poster_en: "3daySuBuuDuc2026.jpg"
+poster: "vietngu.jpg"
+poster_en: "childrenclass.jpg"
 
 ---
 
 ## Chương trình
 
-... chưa có thông tin
+poster: "schedule.jpg"
 
 <!-- EN -->
 
 ## Program
+
+poster_en: "schedule.jpg"
+
 
 ... to be announced
