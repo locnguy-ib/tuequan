@@ -2,7 +2,7 @@
 title: "Lớp Việt Ngữ"
 title_en: "Children Class"
 
-date: 2026-10-18
+date: 2026-10-17
 
 time: "Thứ Bảy hàng tuần, 2:00 PM – 4:30 PM"
 time_en: "Every Saturday, 2:00 PM – 4:30 PM"
