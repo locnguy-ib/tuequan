@@ -17,7 +17,7 @@ description: "Kính mời quý phụ huynh đăng ký ghi danh"
 description_en: "We warmly invite parents to register their children"
 
 link: "https://tinyurl.com/lopvietngu"
-link_info: "https://tinyurl.com/lopvietngu"
+link_en: "https://tinyurl.com/lopvietngu"
 
 poster: "vietngu.jpg"
 poster_en: "childrenclass.jpg"
