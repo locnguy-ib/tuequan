@@ -5,7 +5,7 @@ title_en: "Dhamma Talk"
 date: 2026-09-26
 time: "18:00 PM – 20:00 PM"
 
-facilitator: "Từ Khưu Bửu Hiền"
+facilitator: "Tỳ Khưu Bửu Hiền"
 facilitator_en: "Bhikku Ratanabhaddiya"
 
 location: "Tuệ Quán Thiền Viện - Zoom"
