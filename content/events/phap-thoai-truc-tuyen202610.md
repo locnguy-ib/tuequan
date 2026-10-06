@@ -2,17 +2,17 @@
 title: "Pháp Thoại Trực Tuyến"
 title_en: "Dhamma Talk"
 
-date: 2026-09-26
-time: "18:00 PM – 20:00 PM"
+date: 2026-10-17
+time: "4:00 PM – 6:00 PM"
 
-facilitator: "Từ Khưu Bửu Hiền"
+facilitator: "Tỳ Khưu Bửu Hiền"
 facilitator_en: "Bhikku Ratanabhaddiya"
 
 location: "Tuệ Quán Thiền Viện - Zoom"
 location_en: "Tuệ Quán Thiền Viện - Zoom"
 
-description: "Kính mời quý vị tham dự buổi Pháp Thoại Trực Tuyến qua Zoom - 26 tháng 9, 2026"
-description_en: "Join us for our Dhamma Talk - Sep 26, 2026"
+description: "Kính mời quý vị tham dự buổi Pháp Thoại Trực Tuyến qua Zoom - 17 tháng 10, 2026"
+description_en: "Join us for our Dhamma Talk - Oct 17, 2026"
 
 zoom: ""
 zoom_info: ""
