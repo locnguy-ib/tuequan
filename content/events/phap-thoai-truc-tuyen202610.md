@@ -17,8 +17,8 @@ description_en: "Join us for our Dhamma Talk - Oct 17, 2026"
 zoom: "https://tinyurl.com/phapthoaiSuBuuHien"
 zoom_info: "https://tinyurl.com/phapthoaiSuBuuHien"
 
-poster: "thuyephap-202610"
-poster_en: "Dhammatalk-202610"
+poster: "thuyephap-202610.png"
+poster_en: "Dhammatalk-202610.png"
 
 ---
 
