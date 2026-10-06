@@ -14,8 +14,8 @@ location_en: "Tuệ Quán Thiền Viện - Zoom"
 description: "Kính mời quý vị tham dự buổi Pháp Thoại Trực Tuyến qua Zoom - 17 tháng 10, 2026"
 description_en: "Join us for our Dhamma Talk - Oct 17, 2026"
 
-zoom: ""
-zoom_info: ""
+zoom: "https://tinyurl.com/phapthoaiSuBuuHien"
+zoom_info: "https://tinyurl.com/phapthoaiSuBuuHien"
 
 poster: "thuyephap-202610"
 poster_en: "Dhammatalk-202610"
