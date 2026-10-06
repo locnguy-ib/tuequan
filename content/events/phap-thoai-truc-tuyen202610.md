@@ -17,8 +17,8 @@ description_en: "Join us for our Dhamma Talk - Oct 17, 2026"
 zoom: ""
 zoom_info: ""
 
-poster: ""
-poster_en: ""
+poster: "thuyephap-202610"
+poster_en: "Dhammatalk-202610"
 
 ---
 
