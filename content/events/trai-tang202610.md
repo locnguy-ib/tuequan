@@ -15,8 +15,8 @@ description: "Kính mời quý vị tham dự"
 description_en: "We look forward to seeing you"
 
 
-poster: "thuyephap-202610.png"
-poster_en: "Dhammatalk-202610.png"
+poster: "trai-tang-202610.png"
+poster_en: "Amls-offering-202610.png"
 
 ---
 
