@@ -1,21 +1,19 @@
 ---
-title: "Pháp Thoại Trực Tuyến"
-title_en: "Dhamma Talk"
+title: "Trai Tăng & Sám Hối"
+title_en: "Alms Offering & Full Moon Uposatha Observation"
 
 date: 2026-10-17
-time: "4:00 PM – 6:00 PM"
+time: "8:30 AM – 12:00 PM"
 
-facilitator: "Tỳ Khưu Bửu Hiền"
-facilitator_en: "Bhikku Ratanabhaddiya"
+facilitator: "Bhante Buddharakhita"
+facilitator_en: "Bhante Buddharakhita"
 
-location: "Tuệ Quán Thiền Viện - Zoom"
-location_en: "Tuệ Quán Thiền Viện - Zoom"
+location: "Tuệ Quán Vipassanā Vihāra"
+location_en: "Tuệ Quán Vipassanā Vihāra"
 
-description: "Kính mời quý vị tham dự buổi Pháp Thoại Trực Tuyến qua Zoom - 17 tháng 10, 2026"
-description_en: "Join us for our Dhamma Talk - Oct 17, 2026"
+description: "Kính mời quý vị tham dự"
+description_en: "We look forward to seeing you"
 
-zoom: "https://tinyurl.com/phapthoaiSuBuuHien"
-zoom_info: "https://tinyurl.com/phapthoaiSuBuuHien"
 
 poster: "thuyephap-202610.png"
 poster_en: "Dhammatalk-202610.png"
