@@ -19,7 +19,7 @@ description_en: "We warmly invite parents to register their children"
 link: "https://tinyurl.com/lopvietngu"
 link_en: "https://tinyurl.com/lopvietngu"
 
-poster: "vietngu.jpg"
+poster: "Việt ngữ thiếu nhi 24.10.2026.png"
 poster_en: "childrenclass.jpg"
 
 ---
